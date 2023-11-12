@@ -33,5 +33,5 @@ jobs:
 #        env:
 #          pgconn: ${{secrets.PGCONN}}
           
-      - name: Shutdown when done running
-        run: kill $API_PID
+#      - name: Shutdown when done running
+#        run: kill $API_PID
