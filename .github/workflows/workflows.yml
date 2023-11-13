@@ -21,15 +21,15 @@ jobs:
         run: cd ./frontend && npm i -g @angular/cli && npm i && ng build -c="development"
 
 #      - name: Build test code and install playwright test browser
-#        run: cd ./Api/Test && dotnet build && pwsh bin/Debug/net8.0/playwright.ps1 install --with-deps
+#        run: cd ./api/Test && dotnet build && pwsh bin/Debug/net8.0/playwright.ps1 install --with-deps
 
 #      - name: Build and run Web API + getting process ID for shutting down later
-#        run: cd ./Api && dotnet run & echo "API_PID=$!" >> $GITHUB_ENV
+#        run: cd ./api && dotnet run & echo "API_PID=$!" >> $GITHUB_ENV
 #        env:
 #          pgconn: ${{secrets.PGCONN}}
 
 #      - name: Run tests once API is running (sleep interval set to 60 seconds)
-#        run: cd ./Api/Test && sleep 60 && dotnet test
+#        run: cd ./api/Test && sleep 60 && dotnet test
 #        env:
 #          pgconn: ${{secrets.PGCONN}}
           
