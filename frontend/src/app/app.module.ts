@@ -6,12 +6,15 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeViewComponent} from "./views/home-view/home-view.component";
 import { ProfileViewComponent } from './views/profile-view/profile-view.component';
 import { IonicModule } from '@ionic/angular';
+import { LoginComponent } from './components/login/login.component';
+
 
 
 
 const routes: Routes = [
   {path: '', component: HomeViewComponent },
-  {path: 'profile', component: ProfileViewComponent }
+  {path: 'profile', component: ProfileViewComponent },
+  {path: 'login', component: LoginComponent }
 ]
 
 
@@ -21,6 +24,8 @@ const routes: Routes = [
     NavbarComponent,
     HomeViewComponent,
     ProfileViewComponent,
+    LoginComponent,
+
   ],
   imports: [
     RouterModule.forRoot(routes),
