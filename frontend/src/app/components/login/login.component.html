@@ -1,8 +1,31 @@
 <div class="login-box">
-  <ng-form (ngSubmit)="onSubmit()">
-  <ion-input class="login-username" type="text" placeholder="Username" [(ngModel)]="loginModel.username"></ion-input>
-  <ion-input class="login-password" type="password" placeholder="Password" [(ngModel)]="loginModel.password"></ion-input>
-  </ng-form>
+  <form (ngSubmit)="login()">
+    <ion-item>
+      <ion-input
+        required="true"
+        class="login-username"
+        type="text"
+        placeholder="Username"
+        name="username"
+        [(ngModel)]="loginModel.username"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input
+        required="true"
+        class="login-password"
+        type="password"
+        placeholder="Password"
+        name="password"
+        [(ngModel)]="loginModel.password"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-button type="submit">Login</ion-button>
+    </ion-item>
+  </form>
 
   <a>Register new user</a>
   <a>Reset password</a>
