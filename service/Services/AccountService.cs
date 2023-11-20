@@ -2,7 +2,6 @@
 using infrastructure.Repositories;
 using Microsoft.Extensions.Logging;
 using Service;
-using service.Services;
 using service.Models.Command;
 
 namespace service.Services;
@@ -43,11 +42,22 @@ public class AccountService
         var hashAlgorithm = PasswordHashAlgorithm.Create();
         var salt = hashAlgorithm.GenerateSalt();
         var hash = hashAlgorithm.HashPassword(model.Password, salt);
-        var user = _userRepository.Create(model.FullName, model.Email, model.AvatarUrl);
+        var user = _userRepository.Create(
+            user_email: model.UserEmail,
+            hashed: hash, 
+            user_role: 1, 
+            user_name: model.Username,
+            first_name: model.Firstname,
+            last_name: model.Lastname,
+            edu: model.Education,
+            birth_date: model.BirthDate,
+            profile_photo: model.ProfilePhoto 
+        );
+        Console.WriteLine("here -> " + user.Id);
         _passwordHashRepository.Create(user.Id, hash, salt, hashAlgorithm.GetName());
         return user;
     }
-    
+    /*
     public User? Get(SessionData data)
     {
         return _userRepository.GetById(data.UserId);
@@ -57,4 +67,5 @@ public class AccountService
     {
         return _userRepository.Update(data.UserId, model.FullName, model.Email, avatarUrl);
     }
+    */
 }

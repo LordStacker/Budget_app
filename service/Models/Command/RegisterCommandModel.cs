@@ -1,14 +1,31 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace service.Models.Command;
-
-public class RegisterCommandModel
+namespace service.Models.Command
 {
-    [Required] public required string FullName { get; set; }
+    public class RegisterCommandModel
+    {
+        [Required]
+        public string UserEmail { get; set; }
 
-    [Required] public required string Email { get; set; }
+        [Required]
+        [MinLength(8)]
+        public string Password { get; set; }
 
-    [Required] [MinLength(8)] public required string Password { get; set; }
+        public string ProfilePhoto { get; set; }
 
-    public string? AvatarUrl { get; set; }
+        [Required]
+        public string Username { get; set; }
+
+        [Required]
+        public string Firstname { get; set; }
+
+        [Required]
+        public string Lastname { get; set; }
+
+        [Required]
+        public string Education { get; set; }
+
+        public DateTime BirthDate { get; set; }
+
+    }
 }

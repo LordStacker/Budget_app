@@ -19,16 +19,18 @@ public class PasswordHashRepository
     {
         const string sql = $@"
 SELECT 
-    user_id as {nameof(PasswordHash.UserId)},
-    hash as {nameof(PasswordHash.Hash)},
-    salt as {nameof(PasswordHash.Salt)},
-    algorithm as {nameof(PasswordHash.Algorithm)}
-FROM password_hash
-JOIN users ON password_hash.user_id = users.id
-WHERE email = @email;
+    semester_project.password_hash.user_id AS UserId,
+    semester_project.password_hash.hash AS Hash,
+    semester_project.password_hash.salt AS Salt,
+    semester_project.password_hash.algorithm AS Algorithm
+FROM semester_project.password_hash
+JOIN semester_project.user ON semester_project.password_hash.user_id = semester_project.user.user_id
+WHERE semester_project.user.user_email = @email;
 ";
+        Console.WriteLine("HERE" + nameof(PasswordHash.UserId));
         using (var conn = _dataSource.OpenConnection())
         {
+            Console.WriteLine(email);
             return conn.QuerySingle<PasswordHash>(sql, new { email });
         }
     }
@@ -36,7 +38,7 @@ WHERE email = @email;
     public void Create(int userId, string hash, string salt, string algorithm)
     {
         const string sql = $@"
-INSERT INTO password_hash (user_id, hash, salt, algorithm)
+INSERT INTO semester_project.password_hash (user_id, hash, salt, algorithm)
 VALUES (@userId, @hash, @salt, @algorithm)
 ";
         using (var conn = _dataSource.OpenConnection())
@@ -48,7 +50,7 @@ VALUES (@userId, @hash, @salt, @algorithm)
     public void Update(int userId, string hash, string salt, string algorithm)
     {
         const string sql = $@"
-UPDATE password_hash
+UPDATE semester_project.password_hash
 SET hash = @hash, salt = @salt, algorithm = @algorithm
 WHERE user_id = @userId
 ";

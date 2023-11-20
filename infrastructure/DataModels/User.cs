@@ -1,10 +1,36 @@
-﻿namespace infrastructure.DataModels;
+﻿using System.ComponentModel.DataAnnotations;
 
-public class User
+namespace infrastructure.DataModels
 {
-    public int Id { get; set; }
-    public required string FullName { get; set; }
-    public required string Email { get; set; }
-    public string? AvatarUrl { get; set; }
-    public required bool IsAdmin { get; set; }
+    public class User
+    {
+        public int Id { get; set; }
+
+        [Required]
+        public string UserEmail { get; set; }
+
+        [Required]
+        public string Hash { get; set; }
+
+        [Required]
+        public int UserRole { get; set; }
+
+        [Required]
+        public string Username { get; set; }
+
+        [Required]
+        public string Firstname { get; set; }
+
+        [Required]
+        public string Lastname { get; set; }
+
+        [Required]
+        public string Education { get; set; }
+
+        public DateTime? BirthDate { get; set; }
+
+        public bool IsAdmin { get; set; }
+
+        public string ProfilePhoto { get; set; }
+    }
 }
