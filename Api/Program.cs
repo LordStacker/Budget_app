@@ -1,6 +1,8 @@
+using api;
 using infrastructure;
 using infrastructure.Repositories;
 using service;
+using service.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,9 +17,12 @@ if (builder.Environment.IsProduction())
 {
     builder.Services.AddNpgsqlDataSource(Utilities.ProperlyFormattedConecctionString);
 }
-
+builder.Services.AddSingleton<UserRepository>();
+builder.Services.AddSingleton<PasswordHashRepository>();
+builder.Services.AddSingleton<AccountService>();
 builder.Services.AddSingleton<BudgetRepository>();
 builder.Services.AddSingleton<BudgetService>();
+builder.Services.AddJwtService();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -33,6 +38,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors(options =>
+{
+    options.SetIsOriginAllowed(origin => true)
+        .AllowAnyMethod()
+        .AllowAnyHeader()
+        .AllowCredentials();
+});
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
