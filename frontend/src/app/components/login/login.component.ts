@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +9,10 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+  ) {}
 
   loginModel: any = {};
 
@@ -17,17 +21,17 @@ export class LoginComponent {
 
     const formData = {
       email: this.loginModel.email,
-      password: this.loginModel.password
+      password: this.loginModel.password,
     };
 
     this.http.post(backendUrl, formData).subscribe(
       (response: any) => {
         console.log(response);
-        console.log('Button works!');
+        this.router.navigate(['/']);
       },
       (error) => {
         console.error('An error occurred:', error);
-      }
+      },
     );
   }
 }
