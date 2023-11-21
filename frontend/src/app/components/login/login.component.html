@@ -1,0 +1,32 @@
+<div class="login-box">
+  <form (ngSubmit)="login()">
+    <ion-item>
+      <ion-input
+        required="true"
+        class="login-email"
+        type="text"
+        placeholder="Email"
+        name="email"
+        [(ngModel)]="loginModel.email"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input
+        required="true"
+        class="login-password"
+        type="password"
+        placeholder="Password"
+        name="password"
+        [(ngModel)]="loginModel.password"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-button type="submit">Login</ion-button>
+    </ion-item>
+  </form>
+
+  <a [routerLink]="['/RegisterNewUser']">Register new user</a>
+  <a [routerLink]="['/ResetPassword']">Reset password</a>
+</div>

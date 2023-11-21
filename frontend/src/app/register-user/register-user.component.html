@@ -1,0 +1,92 @@
+<div class="login-box">
+  <form (ngSubmit)="register()">
+    <ion-item>
+      <ion-input
+        required="true"
+        class="username"
+        type="text"
+        placeholder="Username"
+        name="username"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input
+        required="true"
+        class="password"
+        type="password"
+        placeholder="Password"
+        name="password"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input
+        required="true"
+        class="reenter-password"
+        type="password"
+        placeholder="Re-enter password"
+        name="password"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input
+        required="true"
+        class="first-name"
+        type="text"
+        placeholder="First name"
+        name="first-name"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input
+        required="true"
+        class="last-name"
+        type="text"
+        placeholder="Last name"
+        name="last-name"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input
+        required="true"
+        class="e-mail"
+        type="text"
+        placeholder="E-mail address"
+        name="e-mail"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input
+        required="true"
+        class="education"
+        type="text"
+        placeholder="Education"
+        name="education"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input
+        required="true"
+        class="date-of-birth"
+        type="text"
+        placeholder="Date of birth"
+        name="date-of-birth"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-button id="submitUser" type="submit">Submit</ion-button>
+    </ion-item>
+
+    <ion-item>
+      <ion-button (click)="onCancelClick()" id="cancelSubmit" type="button">Cancel</ion-button>
+    </ion-item>
+
+  </form>
+</div>

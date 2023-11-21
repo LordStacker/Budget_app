@@ -4,6 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
+    <list default="true" id="86da97a8-21fc-49b2-8ff1-9a0d12b508c2" name="Changes" comment="" />
+=======
     <list default="true" id="3733189b-e75e-41d6-84c0-a46681c40137" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/ccb8b36b-1968-49be-ac8e-1fa032e69868.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/ccb8b36b-1968-49be-ac8e-1fa032e69868.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/ccb8b36b-1968-49be-ac8e-1fa032e69868/storage_v2/_src_/database/ovupfonm.ChrDOg/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/ccb8b36b-1968-49be-ac8e-1fa032e69868/storage_v2/_src_/database/ovupfonm.ChrDOg/schema/public.abK9xQ.meta" afterDir="false" />
@@ -12,11 +15,14 @@
       <change beforePath="$PROJECT_DIR$/infrastructure/Repositories/PasswordHashRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/Repositories/PasswordHashRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/Services/AccountService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/service/Services/AccountService.cs" afterDir="false" />
     </list>
+>>>>>>> 07d13b600429a69af876eb634fdd28e7d53605a5
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+<<<<<<< HEAD
+=======
   <component name="DatabaseLocalColorSettings">
     <colors>
       <entry key="ccb8b36b-1968-49be-ac8e-1fa032e69868" value="Green" />
@@ -50,4 +56,5 @@
   }
 }</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+>>>>>>> 07d13b600429a69af876eb634fdd28e7d53605a5
 </project>
