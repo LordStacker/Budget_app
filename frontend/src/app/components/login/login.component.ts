@@ -15,16 +15,15 @@ export class LoginComponent {
   ) {}
 
   loginModel: any = {};
+  backendUrl = 'http://localhost:5000/api/account/login';
 
   login() {
-    const backendUrl = 'http://localhost:5000/api/account/login';
-
     const formData = {
       email: this.loginModel.email,
       password: this.loginModel.password,
     };
 
-    this.http.post(backendUrl, formData).subscribe(
+    this.http.post(this.backendUrl, formData).subscribe(
       (response: any) => {
         console.log(response);
         this.router.navigate(['/']);
@@ -33,5 +32,6 @@ export class LoginComponent {
         console.error('An error occurred:', error);
       },
     );
+    this.loginModel = [];
   }
 }
