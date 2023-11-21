@@ -9,12 +9,16 @@ import { IonicModule } from '@ionic/angular';
 import { LoginComponent } from './components/login/login.component';
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
+import { RegisterUserComponent } from './register-user/register-user.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 
 const routes: Routes = [
   {path: '', component: HomeViewComponent },
   {path: 'profile', component: ProfileViewComponent },
-  {path: 'login', component: LoginComponent }
+  {path: 'login', component: LoginComponent },
+  {path: 'RegisterNewUser', component: RegisterUserComponent },
+  {path: 'ResetPassword', component: ResetPasswordComponent }
 ]
 
 
@@ -25,6 +29,8 @@ const routes: Routes = [
     HomeViewComponent,
     ProfileViewComponent,
     LoginComponent,
+    RegisterUserComponent,
+    ResetPasswordComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),
