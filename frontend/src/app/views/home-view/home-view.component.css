@@ -1,0 +1,17 @@
+ion-col {
+  background-color: #6AAFFF;
+  border: solid 1px #fff;
+  color: #fff;
+  text-align: center;
+}
+
+#helloUser{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#contentOne{
+  height: 400px;
+}
