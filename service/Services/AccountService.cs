@@ -44,16 +44,15 @@ public class AccountService
         var hash = hashAlgorithm.HashPassword(model.Password, salt);
         var user = _userRepository.Create(
             user_email: model.UserEmail,
-            hashed: hash, 
-            user_role: 1, 
+            hashed: hash,
+            user_role: 1,
             user_name: model.Username,
             first_name: model.Firstname,
             last_name: model.Lastname,
             edu: model.Education,
             birth_date: model.BirthDate,
-            profile_photo: model.ProfilePhoto 
+            profile_photo: model.ProfilePhoto
         );
-        Console.WriteLine("here -> " + user.Id);
         _passwordHashRepository.Create(user.Id, hash, salt, hashAlgorithm.GetName());
         return user;
     }

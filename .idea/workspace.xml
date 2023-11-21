@@ -5,32 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3733189b-e75e-41d6-84c0-a46681c40137" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/BudgetApp.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/ccb8b36b-1968-49be-ac8e-1fa032e69868.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/ccb8b36b-1968-49be-ac8e-1fa032e69868/storage_v2/_src_/database/ovupfonm.ChrDOg.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/ccb8b36b-1968-49be-ac8e-1fa032e69868/storage_v2/_src_/database/ovupfonm.ChrDOg/schema/information_schema.FNRwLQ.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/ccb8b36b-1968-49be-ac8e-1fa032e69868/storage_v2/_src_/database/ovupfonm.ChrDOg/schema/pg_catalog.0S1ZNQ.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/ccb8b36b-1968-49be-ac8e-1fa032e69868/storage_v2/_src_/database/ovupfonm.ChrDOg/schema/public.abK9xQ.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/ccb8b36b-1968-49be-ac8e-1fa032e69868/storage_v2/_src_/database/ovupfonm.ChrDOg/schema/public.abK9xQ.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/ccb8b36b-1968-49be-ac8e-1fa032e69868/storage_v2/_src_/database/ovupfonm.ChrDOg/schema/semester_project.Eks52w.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqlDataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Api/ServiceCollectionExtensions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BudgetApp.sln.DotSettings.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Api/Controllers/AccountController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Api/Controllers/AccountController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Api/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Api/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Api/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/Api/Properties/launchSettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Api/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/Api/appsettings.Development.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/DataModels/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/DataModels/User.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/ccb8b36b-1968-49be-ac8e-1fa032e69868.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/ccb8b36b-1968-49be-ac8e-1fa032e69868.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/ccb8b36b-1968-49be-ac8e-1fa032e69868/storage_v2/_src_/database/ovupfonm.ChrDOg/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/ccb8b36b-1968-49be-ac8e-1fa032e69868/storage_v2/_src_/database/ovupfonm.ChrDOg/schema/public.abK9xQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/ccb8b36b-1968-49be-ac8e-1fa032e69868/storage_v2/_src_/database/ovupfonm.ChrDOg/schema/semester_project.Eks52w.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/ccb8b36b-1968-49be-ac8e-1fa032e69868/storage_v2/_src_/database/ovupfonm.ChrDOg/schema/semester_project.Eks52w.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/infrastructure/Repositories/PasswordHashRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/Repositories/PasswordHashRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/Repositories/UserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/Repositories/UserRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/Models/Command/RegisterCommandModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/service/Models/Command/RegisterCommandModel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/Services/AccountService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/service/Services/AccountService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/Services/JwtService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/service/Services/JwtService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/service.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/service/service.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

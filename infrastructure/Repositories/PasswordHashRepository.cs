@@ -19,18 +19,16 @@ public class PasswordHashRepository
     {
         const string sql = $@"
 SELECT 
-    semester_project.password_hash.user_id AS UserId,
-    semester_project.password_hash.hash AS Hash,
-    semester_project.password_hash.salt AS Salt,
-    semester_project.password_hash.algorithm AS Algorithm
+    semester_project.password_hash.user_id as {nameof(PasswordHash.UserId)},
+    semester_project.password_hash.hash as {nameof(PasswordHash.Hash)},
+    semester_project.password_hash.salt as {nameof(PasswordHash.Salt)},
+    semester_project.password_hash.algorithm as {nameof(PasswordHash.Algorithm)}
 FROM semester_project.password_hash
 JOIN semester_project.user ON semester_project.password_hash.user_id = semester_project.user.user_id
 WHERE semester_project.user.user_email = @email;
 ";
-        Console.WriteLine("HERE" + nameof(PasswordHash.UserId));
         using (var conn = _dataSource.OpenConnection())
         {
-            Console.WriteLine(email);
             return conn.QuerySingle<PasswordHash>(sql, new { email });
         }
     }
