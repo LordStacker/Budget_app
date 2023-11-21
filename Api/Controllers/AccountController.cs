@@ -25,7 +25,6 @@ public class AccountController : ControllerBase
         var token = _jwtService.IssueToken(SessionData.FromUser(user!));
         return Ok(new { token });
     }
-
     [HttpPost]
     [Route("/api/account/register")]
     public IActionResult Register([FromBody] RegisterCommandModel model)
