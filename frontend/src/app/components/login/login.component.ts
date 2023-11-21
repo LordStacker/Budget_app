@@ -9,15 +9,25 @@ import { FormsModule } from '@angular/forms';
 })
 export class LoginComponent {
   constructor(private http: HttpClient) {}
+
   loginModel: any = {};
 
   login() {
-    const backendUrl = 'http://localhost:8080/api/login';
-    const jsonString = JSON.stringify(this.loginModel);
+    const backendUrl = 'http://localhost:5000/api/account/login';
 
-    this.http.post(backendUrl, jsonString).subscribe((response: any) => {
-      console.log(response);
-      console.log('Button works!');
-    });
+    const formData = {
+      email: this.loginModel.email,
+      password: this.loginModel.password
+    };
+
+    this.http.post(backendUrl, formData).subscribe(
+      (response: any) => {
+        console.log(response);
+        console.log('Button works!');
+      },
+      (error) => {
+        console.error('An error occurred:', error);
+      }
+    );
   }
 }
