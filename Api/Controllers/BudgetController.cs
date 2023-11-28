@@ -1,3 +1,4 @@
+using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using service;
 using service.Models.Command;
@@ -23,15 +24,21 @@ public class BudgetController : ControllerBase
 
     [HttpPost]
     [Route("/api/current-amount")]
-    public IActionResult GetCurrentAmount([FromBody] string token)
+    public IActionResult GetCurrentAmount([FromHeader(Name = "Authorization")] string authorizationHeader)
     {
-        
-        try
+        if (!string.IsNullOrEmpty(authorizationHeader) && authorizationHeader.StartsWith("Bearer "))
         {
-            sessionData = _jwtService.ValidateAndDecodeToken(token);
-        }
-        catch (Exception e)
-        {
+            string token = authorizationHeader.Substring("Bearer ".Length);
+            
+            try
+            {
+                sessionData = _jwtService.ValidateAndDecodeToken(token);
+            }
+            catch (Exception e)
+            {
+                return Unauthorized();
+            }
+        }else{
             return Unauthorized();
         }
         
