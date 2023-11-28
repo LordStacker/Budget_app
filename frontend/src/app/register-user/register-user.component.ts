@@ -17,29 +17,33 @@ export class RegisterUserComponent {
   backendUrl = 'http://localhost:5000/api/account/register';
 
   register() {
-    const formData = {
-      username: this.registerModel.username,
-      password: this.registerModel.password,
-      firstname: this.registerModel.firstname,
-      lastname: this.registerModel.lastname,
-      email: this.registerModel.email,
-      education: this.registerModel.education,
-      dateofbirth: this.registerModel.dateofbirth,
-    };
+    if (this.registerModel) {
+      const formData = {
+        userEmail: this.registerModel.userEmail,
+        password: this.registerModel.password,
+        username: this.registerModel.username,
+        firstname: this.registerModel.firstname,
+        lastname: this.registerModel.lastname,
+        education: this.registerModel.education,
+        birthDate: this.registerModel.birthDate,
+      };
 
-    this.http.post(this.backendUrl, formData).subscribe(
-      (response: any) => {
-        console.log(response);
-      },
-      (error) => {
-        console.error('An error occurred:', error);
-      },
-    );
-    this.registerModel = [];
+      console.log(formData);
+
+      this.http.post(this.backendUrl, formData).subscribe(
+        (response: any) => {
+          console.log(response);
+        },
+        (error) => {
+          console.error('An error occurred:', error);
+        },
+      );
+      this.registerModel = {};
+    }
   }
 
   onCancelClick() {
     // Navigate to the "home" route when the "Cancel" button is clicked
-    this.router.navigate(['/login']);
+    if (this.router) this.router.navigate(['/login']);
   }
 }
