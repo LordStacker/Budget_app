@@ -12,6 +12,7 @@ public class BudgetController : ControllerBase
     private readonly AccountService _accountService;
     private readonly JwtService _jwtService;
     private readonly ILogger<BudgetController> _logger;
+    private SessionData sessionData;
 
     public BudgetController(AccountService accountService, JwtService jwtService, BudgetService budgetService)
     {
@@ -24,7 +25,16 @@ public class BudgetController : ControllerBase
     [Route("/api/current-amount")]
     public IActionResult GetCurrentAmount([FromBody] string token)
     {
-        var sessionData = _jwtService.ValidateAndDecodeToken(token);
+        
+        try
+        {
+            sessionData = _jwtService.ValidateAndDecodeToken(token);
+        }
+        catch (Exception e)
+        {
+            return Unauthorized();
+        }
+        
         var user = _accountService.Get(sessionData);
         if (user == null) return Unauthorized();
         return Ok(_budgetService.GetCurrentAmount(user.Id).CurrentAmount);
