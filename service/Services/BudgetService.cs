@@ -1,4 +1,5 @@
-﻿using infrastructure.Repositories;
+﻿using infrastructure.DataModels;
+using infrastructure.Repositories;
 
 namespace service;
 
@@ -11,4 +12,8 @@ public class BudgetService
         _budgetRepository = budgetRepository;
     }
 
+    public Budget GetCurrentAmount(int userId)
+    {
+        return _budgetRepository.GetCurrentAmount(userId);
+    }
 }
