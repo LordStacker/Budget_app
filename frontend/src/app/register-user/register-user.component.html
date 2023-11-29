@@ -3,11 +3,11 @@
     <ion-item>
       <ion-input
         required="true"
-        class="username"
+        class="e-mail"
         type="text"
-        placeholder="Username"
-        name="username"
-        [(ngModel)]="registerModel.username"
+        placeholder="E-mail address"
+        name="userEmail"
+        [(ngModel)]="registerModel.userEmail"
       ></ion-input>
     </ion-item>
 
@@ -35,10 +35,21 @@
     <ion-item>
       <ion-input
         required="true"
+        class="username"
+        type="text"
+        placeholder="Username"
+        name="username"
+        [(ngModel)]="registerModel.username"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input
+        required="true"
         class="first-name"
         type="text"
         placeholder="First name"
-        name="first-name"
+        name="firstname"
         [(ngModel)]="registerModel.firstname"
       ></ion-input>
     </ion-item>
@@ -49,19 +60,8 @@
         class="last-name"
         type="text"
         placeholder="Last name"
-        name="last-name"
+        name="lastname"
         [(ngModel)]="registerModel.lastname"
-      ></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-input
-        required="true"
-        class="e-mail"
-        type="text"
-        placeholder="E-mail address"
-        name="e-mail"
-        [(ngModel)]="registerModel.email"
       ></ion-input>
     </ion-item>
 
@@ -77,14 +77,18 @@
     </ion-item>
 
     <ion-item>
-      <ion-input
-        required="true"
-        class="date-of-birth"
-        type="text"
-        placeholder="Date of birth"
-        name="date-of-birth"
-        [(ngModel)]="registerModel.dateofbirth"
-      ></ion-input>
+      <ion-datetime-button datetime="datetime"></ion-datetime-button>
+      <ion-modal [keepContentsMounted]="true">
+        <ng-template>
+          <ion-datetime
+            id="datetime"
+            required="true"
+            class="date-of-birth"
+            name="date-of-birth"
+            [(ngModel)]="registerModel.birthDate"
+          ></ion-datetime>
+        </ng-template>
+      </ion-modal>
     </ion-item>
 
     <ion-item>
