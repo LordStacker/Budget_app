@@ -9,11 +9,13 @@ public class AccountController : ControllerBase
 {
     private readonly AccountService _accountService;
     private readonly JwtService _jwtService;
-
-    public AccountController(AccountService accountService, JwtService jwtService)
+    private readonly ILogger<AccountController> _logger;
+    
+    public AccountController(AccountService accountService, JwtService jwtService, ILogger<AccountController> logger)
     {
         _accountService = accountService;
         _jwtService = jwtService;
+        _logger = logger;
     }
 
     [HttpPost]
@@ -22,7 +24,7 @@ public class AccountController : ControllerBase
     {
         var user = _accountService.Authenticate(model);
         if (user == null) return Unauthorized();
-        var token = _jwtService.IssueToken(SessionData.FromUser(user!));
+        var token = _jwtService.IssueToken(SessionData.FromUser(user));
         return Ok(new { token });
     }
     [HttpPost]
