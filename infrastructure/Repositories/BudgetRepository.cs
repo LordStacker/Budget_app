@@ -35,14 +35,21 @@ public class BudgetRepository
     
     public Budget UpdateCurrentAmount(int userId, float newCurrentAmount)
     {
-        const string sql = $@"UPDATE semester_project.budget_management SET current_amount = @newCurrentAmount WHERE user_id = @userId;";
+        const string sqlUpdate = $@"UPDATE semester_project.budget_management SET current_amount = @newCurrentAmount WHERE bm_id = @bmId RETURNING *;";
+        const string sqlGetBmId = $@"SELECT bm_id FROM semester_project.user_to_bm WHERE user_id = @userId;";
+
         using (var conn = _dataSource.OpenConnection())
         {
-            return conn.QueryFirst<Budget>(sql, new
+            var bmId = conn.QueryFirstOrDefault<int>(sqlGetBmId, new { userId });
+
+            if (bmId != 0)
             {
-                userId = userId,
-                newCurrentAmount = newCurrentAmount
-            });
+                return conn.QueryFirst<Budget>(sqlUpdate, new { bmId, newCurrentAmount });
+            }
+            else
+            {
+                throw new Exception("No matching bm_id found for the given user_id");
+            }
         }
     }
 }
