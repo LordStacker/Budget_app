@@ -33,28 +33,51 @@ RETURNING
 
         using (var conn = _dataSource.OpenConnection())
         {
-            return conn.QueryFirst<User>(sql, new
+            var user = conn.QueryFirst<User>(sql, new
             {
                 userEmail = user_email,
-                hash = hashed, 
+                hash = hashed,
                 userRole = user_role,
-                username = user_name, 
+                username = user_name,
                 firstname = first_name,
                 lastname = last_name,
                 education = edu,
                 birthDate = birth_date,
                 profilePhoto = profile_photo,
-                
             });
-        }
 
+            const string sqlBudget = @"
+INSERT INTO semester_project.budget_management (start_amount, current_amount)
+VALUES (0, 0)
+RETURNING bm_id;
+";
+
+            var bmId = conn.QueryFirst<int>(sqlBudget);
+
+            const string sqlUserToBm = @"
+INSERT INTO semester_project.user_to_bm (user_id, bm_id)
+VALUES (@userId, @bmId);
+";
+
+            conn.Execute(sqlUserToBm, new { userId = user.Id, bmId });
+
+            return user;
+        }
     }
     
     public User? GetById(int id)
     {
         const string sql = $@"
 SELECT
-    *
+    user_id as {nameof(User.Id)},
+    user_email as {nameof(User.UserEmail)},
+    user_role as {nameof(User.UserRole)},
+    username as {nameof(User.Username)},
+    firstname as {nameof(User.Firstname)},
+    lastname as {nameof(User.Lastname)},
+    education as {nameof(User.Education)},
+    birth_date as {nameof(User.BirthDate)},
+    profile_photo as {nameof(User.ProfilePhoto)}
 FROM semester_project.user
 WHERE user_id = @id;
 ";
