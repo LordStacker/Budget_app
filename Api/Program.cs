@@ -46,8 +46,6 @@ app.UseCors(options =>
         .AllowCredentials();
 });
 
-app.UseHttpsRedirection();
-
 app.UseAuthorization();
 
 app.MapControllers();
