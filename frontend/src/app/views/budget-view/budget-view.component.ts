@@ -1,13 +1,13 @@
 import {Component} from '@angular/core';
 
-export interface PeriodicElement {
+export interface budgedElement {
   name: string;
   position: number;
   price: number;
   quantity: string;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
+const ELEMENT_DATA: budgedElement[] = [
   {position: 1, name: 'Pizza', price: 1.0079, quantity: '2'},
   {position: 2, name: 'Kartoffel', price: 4.0026, quantity: '30'},
 ];
@@ -18,7 +18,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./budget-view.component.css'],
 })
 export class BudgetViewComponent {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  displayedColumns: string[] = ['position', 'name', 'price', 'quantity'];
   dataSource = ELEMENT_DATA;
 
 }

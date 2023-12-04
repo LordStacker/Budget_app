@@ -6,7 +6,7 @@
     <ion-button routerLink="/forum">Forum</ion-button>
 
     <ion-button slot="end" (click)="toggleLoginStatus()">
-      {{ isLoggedIn ? 'Log Out' : 'Log In' }}
+      {{ dataService.isLoggedIn ? 'Log Out' : 'Log In' }}
     </ion-button>
 
   </ion-toolbar>

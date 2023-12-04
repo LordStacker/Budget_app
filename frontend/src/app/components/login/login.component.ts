@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import {ModalController} from "@ionic/angular";
+import {DataService} from "../../data.service";
 
 
 @Component({
@@ -13,6 +14,7 @@ export class LoginComponent {
   constructor(
     private http: HttpClient,
     private router: Router,
+    public dataService: DataService,
     private modalController: ModalController
   ) {
 
@@ -29,8 +31,8 @@ export class LoginComponent {
 
     this.http.post(this.backendUrl, formData).subscribe(
       (response: any) => {
-        localStorage.setItem('isLoggedIn', 'true');
         localStorage.setItem('token', response.token);
+        this.dataService.isLoggedIn = true;
         this.router.navigate(['/']);
         this.closeModal();
       },
@@ -40,7 +42,6 @@ export class LoginComponent {
     );
     this.loginModel = [];
   }
-
   closeModal() {
     this.modalController.dismiss();
   }

@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, NgZone } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { LoginComponent } from '../login/login.component';
+import {DataService} from "../../data.service";
 
 @Component({
   selector: 'app-navbar',
@@ -12,19 +13,17 @@ export class NavbarComponent {
   isLoggedIn = false;
 
   constructor(
+    public dataService: DataService,
     private modalController: ModalController,
     private changeDetectorRef: ChangeDetectorRef,
     private ngZone: NgZone
   ) {
-    const isLoggedIn = localStorage.getItem('isLoggedIn');
-    this.isLoggedIn = isLoggedIn === 'true';
   }
 
   async toggleLoginStatus() {
-    if (this.isLoggedIn) {
-      localStorage.setItem('isLoggedIn', 'false');
+    if (this.dataService.isLoggedIn) {
       localStorage.removeItem('token');
-      this.isLoggedIn = false;
+      this.dataService.isLoggedIn = false;
     } else {
       // Logging in
       const modal = await this.modalController.create({
@@ -32,16 +31,11 @@ export class NavbarComponent {
       });
       await modal.present();
     }
-    this.updateLoginStatus();
   }
   ngDoCheck() {
     // Trigger change detection whenever ngDoCheck is called
     this.changeDetectorRef.detectChanges();
   }
 
-  private updateLoginStatus() {
-    const isLoggedIn = localStorage.getItem('isLoggedIn');
-    this.isLoggedIn = isLoggedIn === 'true';
-  }
 
 }

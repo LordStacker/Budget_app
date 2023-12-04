@@ -4,12 +4,22 @@
       <ion-col>This Month</ion-col>
       <ion-col>Available</ion-col>
     </ion-row>
-</ion-grid>
-<ion-grid [fixed]="true">
+  <ion-row>
+
+    <ion-col push="4">9823471782477238 Kr</ion-col>
+    <ion-col push="2">-15 kr</ion-col>
+  </ion-row>
   <ion-row>
     <ion-col> <ion-button> Add Item </ion-button></ion-col>
-    <ion-col >9823471782477238 Kr</ion-col>
-    <ion-col >-15 kr</ion-col>
+    <ion-col>
+    <ion-input aria-label="Primary input" color="primary" placeholder="Primary input"></ion-input>
+    </ion-col>
+    <ion-col>
+    <ion-input aria-label="Secondary input" color="secondary" placeholder="Secondary input"></ion-input>
+    </ion-col>
+    <ion-col>
+      <ion-input aria-label="Tertiary input" color="tertiary" placeholder="Tertiary input"></ion-input>
+    </ion-col>
   </ion-row>
 </ion-grid>
 
@@ -28,12 +38,12 @@
             <td mat-cell *matCellDef="let element"> {{element.name}} </td>
           </ng-container>
           <!-- Weight Column -->
-          <ng-container matColumnDef="weight">
+          <ng-container matColumnDef="price">
             <th mat-header-cell *matHeaderCellDef> Price Dkk </th>
             <td mat-cell *matCellDef="let element"> {{element.price}} </td>
           </ng-container>
           <!-- Symbol Column -->
-          <ng-container matColumnDef="symbol">
+          <ng-container matColumnDef="quantity">
             <th mat-header-cell *matHeaderCellDef> Quantity </th>
             <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
           </ng-container>

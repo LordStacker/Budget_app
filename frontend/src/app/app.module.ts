@@ -15,6 +15,7 @@ import { BudgetViewComponent } from './views/budget-view/budget-view.component';
 import { ForumViewComponent } from './views/forum-view/forum-view.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTableModule} from "@angular/material/table";
+import {DataService} from "./data.service";
 
 
 const routes: Routes = [
@@ -22,9 +23,7 @@ const routes: Routes = [
   {path: 'profile', component: ProfileViewComponent },
   {path: 'budget', component: BudgetViewComponent},
   {path: 'forum', component: ForumViewComponent},
-  {path: 'login', component: LoginComponent },
   {path: 'RegisterNewUser', component: RegisterUserComponent },
-  {path: 'ResetPassword', component: ResetPasswordComponent }
 ]
 
 
@@ -49,7 +48,7 @@ const routes: Routes = [
     BrowserAnimationsModule,
     MatTableModule,
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent],
   exports: [RouterModule]
 })
