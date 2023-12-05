@@ -10,6 +10,7 @@ public class AccountController : ControllerBase
     private readonly AccountService _accountService;
     private readonly JwtService _jwtService;
     private readonly ILogger<AccountController> _logger;
+    private SessionData sessionData;
     
     public AccountController(AccountService accountService, JwtService jwtService, ILogger<AccountController> logger)
     {
@@ -34,7 +35,31 @@ public class AccountController : ControllerBase
         var user = _accountService.Register(model);
         return Created();
     }
-    
-    
-    
+
+    [HttpGet]
+    [Route("/api/account/me")]
+    public IActionResult getMe([FromHeader(Name = "Authorization")] string authorizationHeader)
+    {
+        if (!string.IsNullOrEmpty(authorizationHeader) && authorizationHeader.StartsWith("Bearer "))
+        {
+            string token = authorizationHeader.Substring("Bearer ".Length);
+
+            try
+            {
+                sessionData = _jwtService.ValidateAndDecodeToken(token);
+            }
+            catch (Exception e)
+            {
+                return Unauthorized();
+            }
+        }
+        else
+        {
+            return Unauthorized();
+        }
+        
+        var user = _accountService.Get(sessionData);
+        return Ok(user);
+    }
+
 }
