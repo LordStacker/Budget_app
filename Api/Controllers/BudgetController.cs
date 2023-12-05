@@ -23,7 +23,7 @@ public class BudgetController : ControllerBase
         _logger = logger;
     }
 
-    [HttpPost]
+    [HttpGet]
     [Route("/api/get-current-amount")]
     public IActionResult GetCurrentAmount([FromHeader(Name = "Authorization")] string authorizationHeader)
     {
@@ -55,7 +55,7 @@ public class BudgetController : ControllerBase
         if (!string.IsNullOrEmpty(authorizationHeader) && authorizationHeader.StartsWith("Bearer "))
         {
             string token = authorizationHeader.Substring("Bearer ".Length);
-            
+
             try
             {
                 sessionData = _jwtService.ValidateAndDecodeToken(token);
@@ -67,9 +67,12 @@ public class BudgetController : ControllerBase
         }else{
             return Unauthorized();
         }
-        
+
         var user = _accountService.Get(sessionData);
         if (user == null) return Unauthorized();
-        return Ok(_budgetService.UpdateCurrentAmount(user.Id, command.NewCurrentAmount));
+
+        var updatedBudget = _budgetService.UpdateCurrentAmount(user.Id, command.NewCurrentAmount);
+        Console.WriteLine(updatedBudget.Id);
+        return Ok(updatedBudget);
     }
 }

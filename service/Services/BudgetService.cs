@@ -19,6 +19,6 @@ public class BudgetService
     
     public Budget UpdateCurrentAmount(int userId, float newCurrentAmount)
     {
-       return _budgetRepository.UpdateCurrentAmount(userId, newCurrentAmount);
+        return _budgetRepository.UpdateCurrentAmount(userId, newCurrentAmount);
     }
 }
