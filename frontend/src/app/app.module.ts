@@ -15,7 +15,7 @@ import { BudgetViewComponent } from './views/budget-view/budget-view.component';
 import { ForumViewComponent } from './views/forum-view/forum-view.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTableModule} from "@angular/material/table";
-import {DataService} from "./data.service";
+import {DataService} from "./services/data.service";
 
 
 const routes: Routes = [

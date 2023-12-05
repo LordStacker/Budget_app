@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal" created-in="DB-232.10203.8">
-    <data-source name="ovupfonm@snuffleupagus.db.elephantsql.com" uuid="ccb8b36b-1968-49be-ac8e-1fa032e69868">
+    <data-source name="ovupfonm@snuffleupagus.db.elephantsql.com" uuid="1d4f69e9-7366-4cd8-a537-9d06c2f272a9">
       <database-info product="PostgreSQL" version="13.9 (Ubuntu 13.9-1.pgdg20.04+1)" jdbc-version="4.2" driver-name="PostgreSQL JDBC Driver" driver-version="42.6.0" dbms="POSTGRES" exact-version="13.9" exact-driver-version="42.6">
         <identifier-quote-string>&quot;</identifier-quote-string>
       </database-info>
@@ -10,13 +10,8 @@
       <user-name>ovupfonm</user-name>
       <schema-mapping>
         <introspection-scope>
-          <node negative="1">
-            <node kind="database" qname="@">
-              <node kind="schema" qname="@" />
-            </node>
-            <node kind="database" qname="ovupfonm">
-              <node kind="schema" qname="semester_project" />
-            </node>
+          <node kind="database" qname="@">
+            <node kind="schema" qname="@" />
           </node>
         </introspection-scope>
       </schema-mapping>

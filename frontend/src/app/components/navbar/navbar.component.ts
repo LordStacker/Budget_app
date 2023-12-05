@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, NgZone } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { LoginComponent } from '../login/login.component';
-import {DataService} from "../../data.service";
+import {DataService} from "../../services/data.service";
 
 @Component({
   selector: 'app-navbar',
@@ -10,7 +10,6 @@ import {DataService} from "../../data.service";
 })
 
 export class NavbarComponent {
-  isLoggedIn = false;
 
   constructor(
     public dataService: DataService,
@@ -25,7 +24,6 @@ export class NavbarComponent {
       localStorage.removeItem('token');
       this.dataService.isLoggedIn = false;
     } else {
-      // Logging in
       const modal = await this.modalController.create({
         component: LoginComponent,
       });
@@ -33,7 +31,6 @@ export class NavbarComponent {
     }
   }
   ngDoCheck() {
-    // Trigger change detection whenever ngDoCheck is called
     this.changeDetectorRef.detectChanges();
   }
 

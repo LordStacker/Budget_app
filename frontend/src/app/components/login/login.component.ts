@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import {ModalController} from "@ionic/angular";
-import {DataService} from "../../data.service";
+import {DataService} from "../../services/data.service";
 
 
 @Component({
