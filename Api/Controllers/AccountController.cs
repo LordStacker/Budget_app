@@ -34,4 +34,7 @@ public class AccountController : ControllerBase
         var user = _accountService.Register(model);
         return Created();
     }
+    
+    
+    
 }

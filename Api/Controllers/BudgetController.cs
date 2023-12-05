@@ -23,7 +23,7 @@ public class BudgetController : ControllerBase
         _logger = logger;
     }
 
-    [HttpPost]
+    [HttpGet]
     [Route("/api/get-current-amount")]
     public IActionResult GetCurrentAmount([FromHeader(Name = "Authorization")] string authorizationHeader)
     {
