@@ -73,8 +73,8 @@ public class BudgetController : ControllerBase
         
         var user = _accountService.Get(sessionData);
         if (user == null) return Unauthorized();
-        //return Ok(_budgetService.UpdateCurrentAmount(user.Id, command.NewCurrentAmount));
-        return Ok("tested");
+        return Ok(_budgetService.UpdateCurrentAmount(user.Id, command.NewCurrentAmount));
+        //return Ok("tested");
     }
 
     [HttpPost]
@@ -100,13 +100,14 @@ public class BudgetController : ControllerBase
         var user = _accountService.Get(sessionData);
         if (user == null) return Unauthorized();
         return Ok(_budgetService.GetStartAmount(user.Id) .StartAmount);
+        //return Ok("tested");
     }
     
 
     
-    [HttpPut]
+    [HttpPost]
     [Route("/api/update-total-amount")]
-    public IActionResult UpdateStartAmount([FromHeader(Name = "Authorization")] string authorizationHeader, [FromBody] float updatedStartAmount)
+    public IActionResult UpdateStartAmount([FromHeader(Name = "Authorization")] string authorizationHeader, [FromBody] UpdateStartAmountCommand command) //[FromBody] float updatedStartAmount)
     {
         
         if (!string.IsNullOrEmpty(authorizationHeader) && authorizationHeader.StartsWith("Bearer "))
@@ -137,7 +138,7 @@ public class BudgetController : ControllerBase
 
         try
         {
-             _budgetService.UpdateStartAmount(user.Id, updatedStartAmount);
+             _budgetService.UpdateStartAmount(user.Id, command.updatedStartAmount);
         }
         catch (Exception ex)
         {

@@ -55,26 +55,59 @@ public class BudgetRepository
 
     public Budget GetStartAmount(int userId)
     {
-        const string sql = $@"SELECT * From semester_project.budget_management WHERE user_id = @userId:";
+        const string sqlBM = $@"SELECT bm_id FROM semester_project.user_to_bm WHERE user_id = @userId;";
+        const string sqlStartAmount = $@"SELECT * FROM semester_project.budget_management WHERE bm_id = @bmId;";
         using (var conn = _dataSource.OpenConnection())
         {
-            return conn.QueryFirst<Budget>(sql, new
+            var bmId = conn.QueryFirstOrDefault<int>(sqlBM, new { userId });
+
+            if (bmId != 0)
             {
-                userId = userId
-            });
+                return conn.QueryFirst<Budget>(sqlStartAmount, new { bmId });
+            }
+            else
+            {
+                throw new Exception("No matching bm_id found for the given user_id");
+            }
         }
     }
 
+    
+    /*
     public Budget UpdateStartAmount(int userId, float updatedStartAmount)
     {
-        const string sql = $@"UPDATE semester_project.budget_management SET start_amount = @updatedStartAmount WHERE user_id = @userId;";
+        const string sqlUpdate = $@"UPDATE semester_project.budget_management SET start_amount = @updatedStartAmount WHERE user_id = @userId;";
+        //const string sqlSel = $@"SELECT * from semester_project.budget_management where user_id = @userId;";
         using (var conn = _dataSource.OpenConnection())
         {
-            return conn.QueryFirst<Budget>(sql, new
+            return conn.QueryFirst<Budget>(sqlUpdate, new
             {
                 userId = userId,
                 updatedStartAmount = updatedStartAmount
             });
+            
+            
+        }
+    }
+    */
+    
+    public Budget UpdateStartAmount(int userId, float updatedStartAmount)
+    {
+        const string sqlUpdate = $@"UPDATE semester_project.budget_management SET start_amount = @updatedStartAmount WHERE bm_id = @bmId RETURNING *;";
+        const string sqlBmId = $@"SELECT bm_id FROM semester_project.user_to_bm WHERE user_id = @userId;";
+
+        using (var conn = _dataSource.OpenConnection())
+        {
+            var bmId = conn.QueryFirstOrDefault<int>(sqlBmId, new { userId });
+
+            if (bmId != 0)
+            {
+                return conn.QueryFirst<Budget>(sqlUpdate, new { bmId, updatedStartAmount });
+            }
+            else
+            {
+                throw new Exception("No matching bm_id found for the given user_id");
+            }
         }
     }
     
