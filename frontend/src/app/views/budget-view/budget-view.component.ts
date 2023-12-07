@@ -1,4 +1,7 @@
 import {Component} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {Router} from "@angular/router";
+import {DataService} from "../../services/data.service";
 
 export interface budgedElement {
   name: string;
@@ -20,5 +23,32 @@ const ELEMENT_DATA: budgedElement[] = [
 export class BudgetViewComponent {
   displayedColumns: string[] = ['position', 'name', 'price', 'quantity'];
   dataSource = ELEMENT_DATA;
+  budgetModel: any = {};
+  backendUrl = 'pending';
+
+  constructor(
+    private http: HttpClient,
+  ) {
+
+  }
+
+
+
+  submitBudget() {
+    const formData = {
+      itemName: this.budgetModel.itemName,
+      Amount: this.budgetModel.Amount,
+      Quantity: this.budgetModel.Quantity,
+    };
+    this.http.post(this.backendUrl, formData).subscribe(
+      (response: any) => {
+        console.log(response);
+      },
+      (error) => {
+        console.error('An error occurred:', error);
+      },
+    );
+    this.budgetModel = [];
+  }
 
 }

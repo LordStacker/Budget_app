@@ -1,25 +1,54 @@
 <ion-grid [fixed]="true">
   <ion-row class="ion-justify-content-center">
-    <ion-col> <ion-button> Refresh </ion-button></ion-col>
-      <ion-col>This Month</ion-col>
-      <ion-col>Available</ion-col>
+    <ion-col size-sm="3">
+      <ion-button> Refresh </ion-button>
+    </ion-col>
+      <ion-col size-sm="3">This Month</ion-col>
+      <ion-col size-sm="3">Available</ion-col>
     </ion-row>
   <ion-row>
-
-    <ion-col push="4">9823471782477238 Kr</ion-col>
-    <ion-col push="2">-15 kr</ion-col>
+    <ion-col  size-sm="3" push="2.5" >9823471782477238 Kr</ion-col>
+    <ion-col  size-sm="3" push="3" >-15 kr</ion-col>
   </ion-row>
   <ion-row>
-    <ion-col> <ion-button> Add Item </ion-button></ion-col>
-    <ion-col>
-    <ion-input aria-label="Primary input" color="primary" placeholder="Primary input"></ion-input>
+    <form (ngSubmit)="submitBudget()">
+    <ion-col size-sm="3">
+      <ion-button type="submit"> Add Item </ion-button>
     </ion-col>
-    <ion-col>
-    <ion-input aria-label="Secondary input" color="secondary" placeholder="Secondary input"></ion-input>
-    </ion-col>
-    <ion-col>
-      <ion-input aria-label="Tertiary input" color="tertiary" placeholder="Tertiary input"></ion-input>
-    </ion-col>
+      <ion-row>
+      <ion-col size-sm="3">
+        <ion-input
+          required="true"
+          aria-label="Primary input"
+          color="primary"
+          placeholder="Item name"
+          name="itemName"
+          [(ngModel)]="budgetModel.itemName"
+        ></ion-input>
+      </ion-col>
+      <ion-col
+        size-sm="3">
+        <ion-input
+          required="true"
+          aria-label="Secondary input"
+          color="secondary"
+          placeholder="Amount"
+          name="Amount"
+          [(ngModel)]="budgetModel.Amount">
+        </ion-input>
+      </ion-col>
+        <ion-col size-sm="3">
+          <ion-input
+            required="true"
+            aria-label="Tertiary input"
+            color="tertiary"
+            placeholder="Quantity"
+            name="Quantity"
+            [(ngModel)]="budgetModel.Quantity"
+          ></ion-input>
+        </ion-col>
+      </ion-row>
+    </form>
   </ion-row>
 </ion-grid>
 

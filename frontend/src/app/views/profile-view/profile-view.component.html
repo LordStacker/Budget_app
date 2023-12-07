@@ -1,4 +1,4 @@
-<ion-grid [fixed]="true">
+<ion-grid [fixed]="true"  *ngIf="user">
 <ion-row >
   <ion-col size="6">
     <ion-avatar>
@@ -8,34 +8,35 @@
 </ion-row>
   <ion-row>
     <ion-col size="4">
-      Name:
+      Name: {{ user[0].Name }}
     </ion-col>
   </ion-row>
   <ion-row>
     <ion-col size="4">
-      Lastname:
+      Lastname: {{ user[0].Lastname }}
     </ion-col>
   </ion-row>
   <ion-row>
     <ion-col size="4">
-      Username:
+      Username: {{ user[0].Username }}
     </ion-col>
   </ion-row>
   <ion-row>
     <ion-col size="4">
-      E-mail:
+      E-mail: {{ user[0].Email }}
     </ion-col>
   </ion-row>
   <ion-row>
     <ion-col size="4">
-      University
+      University: {{ user[0].University }}
     </ion-col>
   </ion-row>
   <ion-row>
     <ion-col size="4">
-      Birthday:
+      Birthday: {{ user[0].Birthday }}
     </ion-col>
   </ion-row>
+  <ion-button  (click)="changeInfo()"> Edit </ion-button>
 </ion-grid>
 
 
