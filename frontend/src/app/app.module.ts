@@ -9,8 +9,8 @@ import { IonicModule } from '@ionic/angular';
 import { LoginComponent } from './components/login/login.component';
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
-import { RegisterUserComponent } from './register-user/register-user.component';
-import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { RegisterUserComponent } from './components/register-user/register-user.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 
 
 const routes: Routes = [
