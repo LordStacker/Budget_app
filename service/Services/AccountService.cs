@@ -61,6 +61,12 @@ public class AccountService
     {
         return _userRepository.GetById(data.UserId);
     }
+    
+    public User? UpdateEmail(int userId, string newEmail)
+    {
+        return _userRepository.UpdateEmail(userId, newEmail);
+    }
+    
     /*
     public User Update(SessionData data, UpdateAccountCommandModel model, string? avatarUrl)
     {

@@ -2,9 +2,15 @@
   <ion-toolbar>
     <ion-button routerLink="/">Home</ion-button>
     <ion-button routerLink="/profile">Profile</ion-button>
-    <ion-button routerLink="/login">Login</ion-button>
+    <ion-button routerLink="/budget">Budget</ion-button>
+    <ion-button slot="end" (click)="toggleLoginStatus()">
+      {{ dataService.isLoggedIn ? 'Log Out' : 'Log In' }}
+    </ion-button>
   </ion-toolbar>
 </ion-header>
+
+
+
 
 
 

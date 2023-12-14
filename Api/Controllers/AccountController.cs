@@ -61,5 +61,34 @@ public class AccountController : ControllerBase
         var user = _accountService.Get(sessionData);
         return Ok(user);
     }
+    
+    [HttpPost]
+    [Route("api/account/edit/email")]
+    public IActionResult EditMail([FromHeader(Name = "Authorization")] string authorizationHeader, [FromBody] EditMailCommandModel model)
+    {
+        if (!string.IsNullOrEmpty(authorizationHeader) && authorizationHeader.StartsWith("Bearer "))
+        {
+            string token = authorizationHeader.Substring("Bearer ".Length);
+
+            try
+            {
+                sessionData = _jwtService.ValidateAndDecodeToken(token);
+            }
+            catch (Exception e)
+            {
+                return Unauthorized();
+            }
+        }
+        else
+        {
+            return Unauthorized();
+        }
+        
+        var user = _accountService.Get(sessionData);
+        if (user == null) return Unauthorized();
+
+        var updatedUser = _accountService.UpdateEmail(user.Id, model.NewEmail);
+        return Ok(updatedUser);
+    }
 
 }

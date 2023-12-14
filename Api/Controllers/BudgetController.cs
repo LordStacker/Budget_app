@@ -73,9 +73,7 @@ public class BudgetController : ControllerBase
 
         var user = _accountService.Get(sessionData);
         if (user == null) return Unauthorized();
-        
         var updatedBudget = _budgetService.UpdateCurrentAmount(user.Id, command.NewCurrentAmount);
-        Console.WriteLine(updatedBudget.Id);
         return Ok(updatedBudget);
 
     }
@@ -141,7 +139,5 @@ public class BudgetController : ControllerBase
         return Ok(updateStartAmount);
     }
 
-
-
-
+    
 }

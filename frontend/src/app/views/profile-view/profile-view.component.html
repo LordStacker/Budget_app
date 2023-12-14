@@ -1,1 +1,42 @@
-<p>profile-view works!</p>
+<ion-grid [fixed]="true"  *ngIf="user">
+<ion-row >
+  <ion-col size="6">
+    <ion-avatar>
+      <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+    </ion-avatar>
+  </ion-col>
+</ion-row>
+  <ion-row>
+    <ion-col size="4">
+      Name: {{ user[0].Name }}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="4">
+      Lastname: {{ user[0].Lastname }}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="4">
+      Username: {{ user[0].Username }}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="4">
+      E-mail: {{ user[0].Email }}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="4">
+      University: {{ user[0].University }}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="4">
+      Birthday: {{ user[0].Birthday }}
+    </ion-col>
+  </ion-row>
+  <ion-button  (click)="changeInfo()"> Edit </ion-button>
+</ion-grid>
+
+
