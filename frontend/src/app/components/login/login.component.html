@@ -1,5 +1,5 @@
-<div class="login-box">
-  <form (ngSubmit)="login()">
+<ion-content>
+    <form  (ngSubmit)="login()">
     <ion-item>
       <ion-input
         required="true"
@@ -10,7 +10,6 @@
         [(ngModel)]="loginModel.email"
       ></ion-input>
     </ion-item>
-
     <ion-item>
       <ion-input
         required="true"
@@ -28,5 +27,4 @@
   </form>
 
   <a [routerLink]="['/RegisterNewUser']">Register new user</a>
-  <a [routerLink]="['/ResetPassword']">Reset password</a>
-</div>
+</ion-content>

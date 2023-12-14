@@ -87,6 +87,34 @@ WHERE user_id = @id;
         }
     }
 
+    public User? UpdateEmail(int userId, string newEmail)
+    {
+        const string sql = $@"UPDATE semester_project.user SET user_email = @newEmail WHERE user_id = @userId 
+                                    RETURNING  
+                                        user_id as {nameof(User.Id)},
+                                        user_email as {nameof(User.UserEmail)},
+                                        user_role as {nameof(User.UserRole)},
+                                        username as {nameof(User.Username)},
+                                        firstname as {nameof(User.Firstname)},
+                                        lastname as {nameof(User.Lastname)},
+                                        education as {nameof(User.Education)},
+                                        birth_date as {nameof(User.BirthDate)},
+                                        profile_photo as {nameof(User.ProfilePhoto)};";
+        
+        using (var conn = _dataSource.OpenConnection())
+        {
+            try
+            {
+                return conn.QueryFirst<User>(sql, new { userId, newEmail });
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("An error occured while executing the sql query");
+                throw;
+            }
+        }
+    }
+
 /*
     public User Update(int id, string fullName, string email, string? avatarUrl, bool admin = false)
     {
@@ -107,7 +135,7 @@ RETURNING
         }
     }
 
-    
+
     public IEnumerable<User> GetByIds(IEnumerable<int> ids)
     {
         const string sql = $@"
