@@ -10,8 +10,8 @@ import { LoginComponent } from './components/login/login.component';
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 
-import { RegisterUserComponent } from './register-user/register-user.component';
-import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import {RegisterUserComponent} from "./components/register-user/register-user.component";
+import {ResetPasswordComponent} from "./components/reset-password/reset-password.component";
 import { BudgetViewComponent } from './views/budget-view/budget-view.component';
 import { ForumViewComponent } from './views/forum-view/forum-view.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
