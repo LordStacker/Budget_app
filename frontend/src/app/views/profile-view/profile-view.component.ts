@@ -28,6 +28,12 @@ export class ProfileViewComponent implements OnInit {
       University: 'Scheißen',
       Birthday: '1990-01-15'
     }];
+
+    //password request also password modification view
+    //Verify
+    //api edit profile
+    //api password
+
 //pending URL
     /*this.http.get<UserInfo[]>(this.backendUrl).subscribe(
       data => {

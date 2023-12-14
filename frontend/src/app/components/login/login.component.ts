@@ -23,6 +23,8 @@ export class LoginComponent {
   loginModel: any = {};
   backendUrl = 'http://localhost:5000/api/account/login';
 
+  //Reset password action
+
   login() {
     const formData = {
       email: this.loginModel.email,
