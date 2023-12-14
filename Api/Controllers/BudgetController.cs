@@ -72,7 +72,6 @@ public class BudgetController : ControllerBase
         if (user == null) return Unauthorized();
 
         var updatedBudget = _budgetService.UpdateCurrentAmount(user.Id, command.NewCurrentAmount);
-        Console.WriteLine(updatedBudget.Id);
         return Ok(updatedBudget);
     }
 }
