@@ -1,0 +1,84 @@
+<ion-grid [fixed]="true">
+  <ion-row class="ion-justify-content-center">
+    <ion-col size-sm="3">
+      <ion-button> Refresh </ion-button>
+    </ion-col>
+      <ion-col size-sm="3">This Month</ion-col>
+      <ion-col size-sm="3">Available</ion-col>
+    </ion-row>
+  <ion-row>
+    <ion-col  size-sm="3" push="2.5" >9823471782477238 Kr</ion-col>
+    <ion-col  size-sm="3" push="3" >-15 kr</ion-col>
+  </ion-row>
+  <ion-row>
+    <form (ngSubmit)="submitBudget()">
+    <ion-col size-sm="3">
+      <ion-button type="submit"> Add Item </ion-button>
+    </ion-col>
+      <ion-row>
+      <ion-col size-sm="3">
+        <ion-input
+          required="true"
+          aria-label="Primary input"
+          color="primary"
+          placeholder="Item name"
+          name="itemName"
+          [(ngModel)]="budgetModel.itemName"
+        ></ion-input>
+      </ion-col>
+      <ion-col
+        size-sm="3">
+        <ion-input
+          required="true"
+          aria-label="Secondary input"
+          color="secondary"
+          placeholder="Amount"
+          name="Amount"
+          [(ngModel)]="budgetModel.Amount">
+        </ion-input>
+      </ion-col>
+        <ion-col size-sm="3">
+          <ion-input
+            required="true"
+            aria-label="Tertiary input"
+            color="tertiary"
+            placeholder="Quantity"
+            name="Quantity"
+            [(ngModel)]="budgetModel.Quantity"
+          ></ion-input>
+        </ion-col>
+      </ion-row>
+    </form>
+  </ion-row>
+</ion-grid>
+
+<ion-grid [fixed]="true">
+  <ion-row >
+    <ion-col size="10">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+          <!-- Position Column -->
+          <ng-container matColumnDef="position">
+            <th mat-header-cell *matHeaderCellDef> No. </th>
+            <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+          </ng-container>
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          </ng-container>
+          <!-- Weight Column -->
+          <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef> Price Dkk </th>
+            <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+          </ng-container>
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="quantity">
+            <th mat-header-cell *matHeaderCellDef> Quantity </th>
+            <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </ion-col>
+  </ion-row>
+</ion-grid>
