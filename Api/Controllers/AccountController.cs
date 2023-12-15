@@ -62,7 +62,7 @@ public class AccountController : ControllerBase
         return Ok(user);
     }
     
-    [HttpPost]
+    [HttpPut]
     [Route("api/account/edit/email")]
     public IActionResult EditMail([FromHeader(Name = "Authorization")] string authorizationHeader, [FromBody] EditMailCommandModel model)
     {
@@ -88,6 +88,35 @@ public class AccountController : ControllerBase
         if (user == null) return Unauthorized();
 
         var updatedUser = _accountService.UpdateEmail(user.Id, model.NewEmail);
+        return Ok(updatedUser);
+    }
+    
+    [HttpPut]
+    [Route("api/account/edit/password")]
+    public IActionResult EditMail([FromHeader(Name = "Authorization")] string authorizationHeader, [FromBody] EditPasswordCommandModel model)
+    {
+        if (!string.IsNullOrEmpty(authorizationHeader) && authorizationHeader.StartsWith("Bearer "))
+        {
+            string token = authorizationHeader.Substring("Bearer ".Length);
+
+            try
+            {
+                sessionData = _jwtService.ValidateAndDecodeToken(token);
+            }
+            catch (Exception e)
+            {
+                return Unauthorized();
+            }
+        }
+        else
+        {
+            return Unauthorized();
+        }
+        
+        var user = _accountService.Get(sessionData);
+        if (user == null) return Unauthorized();
+
+        var updatedUser = _accountService.UpdatePassword(user.Id, model.NewPassword);
         return Ok(updatedUser);
     }
 
