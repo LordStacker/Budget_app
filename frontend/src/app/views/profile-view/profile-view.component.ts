@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {UserInfo} from "./profile-info.model";
+import {UserInfo} from "../../model/profile-info.model";
 import {HttpClient} from "@angular/common/http";
-import {LoginComponent} from "../../components/login/login.component";
 import {ModalController} from "@ionic/angular";
 import {EditComponent} from "../../components/edit/edit.component";
+import {DataService} from "../../services/data.service";
 
 @Component({
   selector: 'app-profile-view',
@@ -11,23 +11,24 @@ import {EditComponent} from "../../components/edit/edit.component";
   styleUrls: ['./profile-view.component.css']
 })
 export class ProfileViewComponent implements OnInit {
-  user: UserInfo[] | undefined;
+  user: UserInfo | undefined;
   backendUrl = 'pending';
 
 
   constructor(
     private http: HttpClient,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private dataService: DataService
   ) {}
   ngOnInit(): void {
-    this.user = [{
+    this.user = {
       Name: 'John',
       Lastname: 'Doe',
       Username: 'johndoe123',
       Email: 'john@example.com',
       University: 'Scheißen',
       Birthday: '1990-01-15'
-    }];
+    };
 
     //password request also password modification view
     //Verify

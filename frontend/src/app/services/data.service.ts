@@ -1,4 +1,5 @@
 import {Injectable} from "@angular/core";
+import {UserInfo} from "../model/profile-info.model";
 
 Injectable({providedIn: 'root'})
 export class DataService {

@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, NgZone } from '@angular/core';
+import { Component } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { LoginComponent } from '../login/login.component';
 import {DataService} from "../../services/data.service";
@@ -14,8 +14,6 @@ export class NavbarComponent {
   constructor(
     public dataService: DataService,
     private modalController: ModalController,
-    private changeDetectorRef: ChangeDetectorRef,
-    private ngZone: NgZone
   ) {
   }
 
@@ -30,9 +28,4 @@ export class NavbarComponent {
       await modal.present();
     }
   }
-  ngDoCheck() {
-    this.changeDetectorRef.detectChanges();
-  }
-
-
 }
