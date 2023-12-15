@@ -28,6 +28,7 @@ export class BudgetViewComponent {
 
   constructor(
     private http: HttpClient,
+    public dataService: DataService,
   ) {
 
   }

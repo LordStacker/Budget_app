@@ -1,8 +1,9 @@
 <ion-header>
   <ion-toolbar>
     <ion-button routerLink="/">Home</ion-button>
-    <ion-button routerLink="/profile">Profile</ion-button>
-    <ion-button routerLink="/budget">Budget</ion-button>
+    <ion-button *ngIf="dataService.isLoggedIn" routerLink="/profile">Profile</ion-button>
+    <ion-button *ngIf="dataService.isLoggedIn" routerLink="/budget">Budget</ion-button>
+    <ion-title slot="end">{{dataService.isLoggedIn ? dataService.isUsername : ''}}</ion-title>
     <ion-button slot="end" (click)="toggleLoginStatus()">
       {{ dataService.isLoggedIn ? 'Log Out' : 'Log In' }}
     </ion-button>

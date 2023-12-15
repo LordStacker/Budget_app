@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Router } from '@angular/router';
 import {ModalController} from "@ionic/angular";
 import {DataService} from "../../services/data.service";
@@ -35,6 +35,21 @@ export class LoginComponent {
       (response: any) => {
         localStorage.setItem('token', response.token);
         this.dataService.isLoggedIn = true;
+        const headers = new HttpHeaders({
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        });
+        const requestOptions = {
+          headers: headers
+        };
+        this.http.get<any>('http://localhost:5000/api/account/me', requestOptions).subscribe(
+          data => {
+            console.log(data)
+            this.dataService.isUsername = data.username
+          },
+          error => {
+            console.error('Error:', error);
+          }
+        );
         this.router.navigate(['/']);
         this.closeModal();
       },
