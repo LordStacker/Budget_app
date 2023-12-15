@@ -67,6 +67,15 @@ public class AccountService
         return _userRepository.UpdateEmail(userId, newEmail);
     }
     
+    public User? UpdatePassword(int userId, string newPassword)
+    {
+        var hashAlgorithm = PasswordHashAlgorithm.Create();
+        var salt = hashAlgorithm.GenerateSalt();
+        var hash = hashAlgorithm.HashPassword(newPassword, salt);
+        _passwordHashRepository.Update(userId, hash, salt, hashAlgorithm.GetName());
+        return _userRepository.GetById(userId);
+    }
+    
     /*
     public User Update(SessionData data, UpdateAccountCommandModel model, string? avatarUrl)
     {
