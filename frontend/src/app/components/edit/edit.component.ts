@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {DataService} from "../../services/data.service";
 import {ModalController} from "@ionic/angular";
@@ -12,28 +12,36 @@ import {ModalController} from "@ionic/angular";
 export class EditComponent {
   constructor(
     private http: HttpClient,
-    private modalController: ModalController
+    private modalController: ModalController,
+    public dataService: DataService,
+    private router: Router,
   ) {
 
   }
 
   editModel: any = {};
-  backendUrl = 'pending';
+  backendUrl = 'http://localhost:5000/api/account/update/user';
 
   editUser() {
     const formData = {
-      Name: this.editModel.Name ,
-      Lastname: this.editModel.Lastname,
-      Username: this.editModel.Username,
-      email: this.editModel.email,
-      University: this.editModel.University,
-      Birthday: this.editModel.Birthday,
+      userEmail: this.editModel.userEmail,
+      username: this.editModel.username,
+      firstname: this.editModel.firstname ,
+      lastname: this.editModel.lastname,
+      education: this.editModel.education,
+      birthDate: this.editModel.birthDate,
     };
     console.log(formData)
-/*
-    this.http.put(this.backendUrl, formData).subscribe(
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      });
+      const requestOptions = {
+        headers: headers
+      }
+    this.http.put(this.backendUrl, formData, requestOptions).subscribe(
       (response: any) => {
-        console.log(response)
+        this.getUserData();
+        this.router.navigate(['/']);
         this.closeModal();
       },
       (error) => {
@@ -41,7 +49,25 @@ export class EditComponent {
       },
     );
     this.editModel = [];
-    */
+
+  }
+  getUserData() {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    const requestOptions = {
+      headers: headers
+    };
+    this.http.get<any>('http://localhost:5000/api/account/me', requestOptions).subscribe(
+      data => {
+        console.log(data);
+        this.dataService.isUsername = data.username;
+        this.dataService.isUser = data;
+      },
+      error => {
+        console.error('Error:', error);
+      }
+    );
   }
   closeModal() {
     this.modalController.dismiss();

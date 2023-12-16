@@ -38,7 +38,7 @@ public class BudgetController : ControllerBase
             }
             catch (Exception e)
             {
-                return Unauthorized();
+                return Unauthorized(e);
             }
         }
         else
@@ -65,7 +65,7 @@ public class BudgetController : ControllerBase
             }
             catch (Exception e)
             {
-                return Unauthorized();
+                return Unauthorized(e);
             }
         }else{
             return Unauthorized();
@@ -92,7 +92,7 @@ public class BudgetController : ControllerBase
             }
             catch (Exception e)
             {
-                return Unauthorized();
+                return Unauthorized(e);
             }
         }else{
             return Unauthorized();
@@ -120,7 +120,7 @@ public class BudgetController : ControllerBase
             }
             catch (Exception e)
             {
-                return Unauthorized();
+                return Unauthorized(e);
             }
         }
         

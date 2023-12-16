@@ -24,7 +24,7 @@ const routes: Routes = [
   {path: '', component: HomeViewComponent },
   {path: 'profile', component: ProfileViewComponent },
   {path: 'budget', component: BudgetViewComponent},
-  {path: 'RegisterNewUser', component: RegisterUserComponent },
+  {path: 'register', component: RegisterUserComponent },
 ]
 
 

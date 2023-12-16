@@ -10,7 +10,7 @@ import {DataService} from "../../services/data.service";
   templateUrl: './profile-view.component.html',
   styleUrls: ['./profile-view.component.css']
 })
-export class ProfileViewComponent implements OnInit {
+export class ProfileViewComponent {
   user: UserInfo | undefined;
   backendUrl = 'pending';
 
@@ -21,14 +21,7 @@ export class ProfileViewComponent implements OnInit {
     private dataService: DataService
   ) {}
   ngOnInit(): void {
-    this.user = {
-      Name: 'John',
-      Lastname: 'Doe',
-      Username: 'johndoe123',
-      Email: 'john@example.com',
-      University: 'Scheißen',
-      Birthday: '1990-01-15'
-    };
+    this.user = this.dataService.isUser;
 
     //password request also password modification view
     //Verify
@@ -36,7 +29,7 @@ export class ProfileViewComponent implements OnInit {
     //api password
 
 //pending URL
-    /*this.http.get<UserInfo[]>(this.backendUrl).subscribe(
+    /*this.http.put<UserInfo[]>(this.backendUrl).subscribe(
       data => {
         this.user = data;
       },

@@ -77,18 +77,15 @@
     </ion-item>
 
     <ion-item>
-      <ion-datetime-button datetime="datetime"></ion-datetime-button>
-      <ion-modal [keepContentsMounted]="true">
-        <ng-template>
-          <ion-datetime
-            id="datetime"
+
+          <ion-input
             required="true"
-            class="date-of-birth"
-            name="date-of-birth"
+            placeholder="Birthday"
+            name="Birthday"
+            type="date"
             [(ngModel)]="registerModel.birthDate"
-          ></ion-datetime>
-        </ng-template>
-      </ion-modal>
+          ></ion-input>
+
     </ion-item>
 
     <ion-item>

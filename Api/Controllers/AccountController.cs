@@ -50,7 +50,7 @@ public class AccountController : ControllerBase
             }
             catch (Exception e)
             {
-                return Unauthorized();
+                return Unauthorized(e);
             }
         }
         else
@@ -63,8 +63,8 @@ public class AccountController : ControllerBase
     }
     
     [HttpPut]
-    [Route("api/account/edit/email")]
-    public IActionResult EditMail([FromHeader(Name = "Authorization")] string authorizationHeader, [FromBody] EditMailCommandModel model)
+    [Route("api/account/update/user")]
+    public IActionResult EditUser([FromHeader(Name = "Authorization")] string authorizationHeader, [FromBody] UpdateUserCommandModel model)
     {
         if (!string.IsNullOrEmpty(authorizationHeader) && authorizationHeader.StartsWith("Bearer "))
         {
@@ -76,7 +76,7 @@ public class AccountController : ControllerBase
             }
             catch (Exception e)
             {
-                return Unauthorized();
+                return Unauthorized(e);
             }
         }
         else
@@ -86,8 +86,7 @@ public class AccountController : ControllerBase
         
         var user = _accountService.Get(sessionData);
         if (user == null) return Unauthorized();
-
-        var updatedUser = _accountService.UpdateEmail(user.Id, model.NewEmail);
+        var updatedUser = _accountService.UpdateUser(user.Id,model);
         return Ok(updatedUser);
     }
     
@@ -105,7 +104,7 @@ public class AccountController : ControllerBase
             }
             catch (Exception e)
             {
-                return Unauthorized();
+                return Unauthorized(e);
             }
         }
         else

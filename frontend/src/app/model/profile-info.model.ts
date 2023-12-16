@@ -1,8 +1,12 @@
 export interface UserInfo {
-  Name: string;
-  Lastname: string;
-  Username: string;
-  Email: string;
-  University: string;
-  Birthday: string;
+  birthDate: Date;
+  education: string;
+  firstname: string;
+  hash: string;
+  id: number;
+  lastname: string;
+  profilePhoto: string;
+  userEmail: string;
+  userRole: number;
+  username: string;
 }
