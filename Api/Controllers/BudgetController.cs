@@ -174,7 +174,6 @@ public class BudgetController : ControllerBase
             return Unauthorized();
         }
         var transactions = _budgetService.getTransactions(user.Id);
-        Console.WriteLine(transactions);
         return Ok(transactions);
 }
     [HttpPost]
