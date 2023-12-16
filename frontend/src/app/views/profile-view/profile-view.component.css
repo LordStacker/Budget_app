@@ -1,0 +1,7 @@
+.profileView {
+    background-image: url("src/assets/images/budget-background.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 850px;
+}

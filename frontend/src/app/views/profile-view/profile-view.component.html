@@ -1,4 +1,5 @@
-<ion-grid [fixed]="true"  *ngIf="user">
+<div class="profileView">
+  <ion-grid [fixed]="true"  *ngIf="user">
 <ion-row >
   <ion-col size="6">
     <ion-avatar>
@@ -38,5 +39,5 @@
   </ion-row>
   <ion-button  (click)="changeInfo()"> Edit </ion-button>
 </ion-grid>
-
+</div>
 

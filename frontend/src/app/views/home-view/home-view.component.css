@@ -1,5 +1,4 @@
 ion-col {
-  background-color: #6AAFFF;
   border: solid 1px #fff;
   color: #fff;
   text-align: center;
@@ -10,8 +9,48 @@ ion-col {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  font-family: "BankGothic Lt BT", serif;
+  font-size: 50px;
+  color: black;
+}
+
+.grid-home{
+  display: flex;
+  justify-content: center;
+  /*background-image: url("src/assets/images/background-home-login.jpg");
+  background-repeat: no-repeat; */
 }
 
 #contentOne{
-  height: 400px;
+  display: flex;
+  justify-content: center;
+  height: 720px;
 }
+
+.ion-justify-content-center {
+  display: flex;
+  justify-content: center;
+  width: 1000px;
+  border-style: solid;
+  border-color: lightgray;
+  margin-bottom: 10%;
+  background-image: url("src/assets/images/raining-money-money.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+div.welcome-box {
+  background-image: url("src/assets/images/Homescreen.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-color: lightgray;
+  padding-top: 25px;
+
+}
+
+
+
+
+
+

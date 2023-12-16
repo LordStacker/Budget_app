@@ -1,1 +1,64 @@
+ion-toolbar.toolbar {
+    display: flex;
+    height: 70px;
+    min-width: 930px;
+}
+
+.logo{
+    background-image: url("src/assets/images/budgit-logo.jpg");
+    background-size: cover;
+    font-size: 120%;
+    height: 50px;
+    width: 110px;
+    --background: transparent;
+    margin-left: 25px;
+    border-radius: 10px;
+}
+
+#logo-name {
+    color: white;
+    font-family: "BankGothic Lt BT", serif;
+}
+
+.homeBtn{
+    --background: lightgrey;
+    margin-left: 50px;
+    font-family: "BankGothic Lt BT", serif;
+    font-size: 120%;
+}
+
+.loginBtn{
+    --background: darkred;
+    margin-right: 25px;
+    font-family: "BankGothic Lt BT", serif;
+    font-size: 120%;
+}
+
+.budgetBtn{
+    --background: lightgray;
+    margin-left: 50px;
+    font-family: "BankGothic Lt BT", serif;
+    font-size: 120%;
+}
+
+.profileBtn{
+    --background: lightgray;
+    margin-left: 50px;
+    font-family: "BankGothic Lt BT", serif;
+    font-size: 120%;
+}
+
+ion-icon#homee {
+    color: black;
+
+}
+
+ion-icon.md.hydrated {
+    color: black;
+}
+
+
+
+
+
 

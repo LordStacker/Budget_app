@@ -18,6 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTableModule} from "@angular/material/table";
 import {DataService} from "./services/data.service";
 import { EditComponent } from './components/edit/edit.component';
+import {NgOptimizedImage} from "@angular/common";
 
 
 
@@ -43,15 +44,16 @@ const routes: Routes = [
     ForumViewComponent,
     EditComponent,
   ],
-  imports: [
-    RouterModule.forRoot(routes),
-    IonicModule.forRoot(),
-    BrowserModule,
-    FormsModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MatTableModule,
-  ],
+    imports: [
+        RouterModule.forRoot(routes),
+        IonicModule.forRoot(),
+        BrowserModule,
+        FormsModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        MatTableModule,
+        NgOptimizedImage,
+    ],
   providers: [DataService],
   bootstrap: [AppComponent],
   exports: [RouterModule]
