@@ -85,11 +85,4 @@ public class AccountService
         _passwordHashRepository.Update(userId, hash, salt, hashAlgorithm.GetName());
         return _userRepository.GetById(userId);
     }
-    
-    /*
-    public User Update(SessionData data, UpdateAccountCommandModel model, string? avatarUrl)
-    {
-        return _userRepository.Update(data.UserId, model.FullName, model.Email, avatarUrl);
-    }
-    */
 }

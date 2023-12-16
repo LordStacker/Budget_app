@@ -125,4 +125,33 @@ public class BudgetRepository
         }
     }
 
+    public Transaction PostTransactions(int userId, int ItemAmount, string ItemName, float TotalCost)
+    { 
+        const string sqlBmId = $@"SELECT bm_id FROM semester_project.user_to_bm WHERE user_id = @userId;";
+        const string sql = $@"
+            INSERT INTO semester_project.transaction (item_name, item_amount, total_cost, bm_id) 
+            VALUES (@ItemName, @ItemAmount, @TotalCost, @bm_id)
+            RETURNING
+    item_name as {nameof(Transaction.ItemName)},
+    item_amount as {nameof(Transaction.ItemAmount)},
+    total_cost as {nameof(Transaction.TotalCost)};
+";
+        using (var conn = _dataSource.OpenConnection())
+        {
+            var bmId = conn.QueryFirstOrDefault<int>(sqlBmId, new { userId });
+            if (bmId != 0 && bmId != null)
+            {
+                Console.WriteLine((sql, new { ItemName, ItemAmount, TotalCost, bmId }));
+                return conn.QueryFirst<Transaction>(sql, new { ItemName, ItemAmount, TotalCost, bm_id = bmId });
+            }
+            else
+            {
+                throw new Exception("No matching bm_id found for the given user_id");
+            }
+
+        }
+        
+        
+    }
+
 }
