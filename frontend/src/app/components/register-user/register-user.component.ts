@@ -44,6 +44,6 @@ export class RegisterUserComponent {
 
   onCancelClick() {
     // Navigate to the "home" route when the "Cancel" button is clicked
-    if (this.router) this.router.navigate(['/login']);
+    if (this.router) this.router.navigate(['/']);
   }
 }
