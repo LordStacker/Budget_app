@@ -13,7 +13,6 @@ import {HttpClientModule} from "@angular/common/http";
 import {RegisterUserComponent} from "./components/register-user/register-user.component";
 import {ResetPasswordComponent} from "./components/reset-password/reset-password.component";
 import { BudgetViewComponent } from './views/budget-view/budget-view.component';
-import { ForumViewComponent } from './views/forum-view/forum-view.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTableModule} from "@angular/material/table";
 import {DataService} from "./services/data.service";
@@ -26,8 +25,7 @@ const routes: Routes = [
   {path: '', component: HomeViewComponent },
   {path: 'profile', component: ProfileViewComponent },
   {path: 'budget', component: BudgetViewComponent},
-  {path: 'forum', component: ForumViewComponent},
-  {path: 'RegisterNewUser', component: RegisterUserComponent },
+  {path: 'register', component: RegisterUserComponent },
 ]
 
 
@@ -41,7 +39,6 @@ const routes: Routes = [
     RegisterUserComponent,
     ResetPasswordComponent,
     BudgetViewComponent,
-    ForumViewComponent,
     EditComponent,
   ],
     imports: [

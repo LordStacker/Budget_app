@@ -1,5 +1,6 @@
 ﻿using infrastructure.DataModels;
 using infrastructure.Repositories;
+using service.Models.Command;
 
 namespace service;
 
@@ -30,5 +31,18 @@ public class BudgetService
     public Budget UpdateStartAmount(int userId, float updatedStartAmount)
     {
         return _budgetRepository.UpdateStartAmount(userId, updatedStartAmount);
+    }
+
+    public IEnumerable<Transaction> getTransactions(int userId)
+    {
+        return _budgetRepository.GetTransactions(userId);
+    }
+    public Transaction PostTransactions(int userId, PostTransaction command)
+    {
+        return _budgetRepository.PostTransactions(
+            userId,
+            command.ItemAmount,
+            command.ItemName,
+            command.TotalCost);
     }
 }

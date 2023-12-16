@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {Component, OnInit} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Router } from '@angular/router';
 import {ModalController} from "@ionic/angular";
 import {DataService} from "../../services/data.service";
@@ -23,6 +23,8 @@ export class LoginComponent {
   loginModel: any = {};
   backendUrl = 'http://localhost:5000/api/account/login';
 
+  //Reset password action
+
   login() {
     const formData = {
       email: this.loginModel.email,
@@ -33,6 +35,7 @@ export class LoginComponent {
       (response: any) => {
         localStorage.setItem('token', response.token);
         this.dataService.isLoggedIn = true;
+        this.getUserData();
         this.router.navigate(['/']);
         this.closeModal();
       },
@@ -44,5 +47,24 @@ export class LoginComponent {
   }
   closeModal() {
     this.modalController.dismiss();
+  }
+
+  getUserData() {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    const requestOptions = {
+      headers: headers
+    };
+    this.http.get<any>('http://localhost:5000/api/account/me', requestOptions).subscribe(
+      data => {
+        console.log(data);
+        this.dataService.isUsername = data.username;
+        this.dataService.isUser = data;
+      },
+      error => {
+        console.error('Error:', error);
+      }
+    );
   }
 }

@@ -1,5 +1,5 @@
 <div class="budget-box">
-  <ion-grid class="gridBudget" [fixed]="true">
+<ion-grid class="gridBudget" *ngIf="dataService.isLoggedIn" [fixed]="true">
   <ion-row class="ion-justify-content-center">
     <ion-col size-sm="3">
       <ion-button id="refresh"> Refresh </ion-button>
@@ -25,6 +25,7 @@
           placeholder="Item name"
           name="itemName"
           [(ngModel)]="budgetModel.itemName"
+          type="text"
         ></ion-input>
       </ion-col>
       <ion-col id="itemAmount"
@@ -34,8 +35,10 @@
           aria-label="Secondary input"
           color="secondary"
           placeholder="Amount"
-          name="Amount"
-          [(ngModel)]="budgetModel.Amount">
+          name="itemAmount"
+          [(ngModel)]="budgetModel.itemAmount"
+          type="number"
+        >
         </ion-input>
       </ion-col>
         <ion-col id="itemQuantity" size-sm="3">
@@ -44,8 +47,9 @@
             aria-label="Tertiary input"
             color="tertiary"
             placeholder="Quantity"
-            name="Quantity"
-            [(ngModel)]="budgetModel.Quantity"
+            name="totalCost"
+            [(ngModel)]="budgetModel.totalCost"
+            type="number"
           ></ion-input>
         </ion-col>
       </ion-row>
@@ -53,7 +57,7 @@
   </ion-row>
 </ion-grid>
 
-<ion-grid [fixed]="true">
+<ion-grid *ngIf="dataService.isLoggedIn" [fixed]="true">
   <ion-row >
     <ion-col size="10">
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
@@ -84,3 +88,4 @@
   </ion-row>
 </ion-grid>
 </div>
+
