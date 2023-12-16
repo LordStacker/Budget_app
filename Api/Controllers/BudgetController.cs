@@ -177,6 +177,37 @@ public class BudgetController : ControllerBase
         Console.WriteLine(transactions);
         return Ok(transactions);
 }
+    [HttpPost]
+    [Route("/post/transactions")]
+    public IActionResult PostTransactions([FromHeader(Name = "Authorization")] string authorizationHeader,
+        [FromBody] PostTransaction command)
+    {
+        if (!string.IsNullOrEmpty(authorizationHeader) && authorizationHeader.StartsWith("Bearer "))
+        {
+            string token = authorizationHeader.Substring("Bearer ".Length);
+
+            try
+            {
+                sessionData = _jwtService.ValidateAndDecodeToken(token);
+            }
+            catch (Exception e)
+            {
+                return Unauthorized(e);
+            }
+        }
+
+        else
+        {
+            return Unauthorized();
+        }
+        var user = _accountService.Get(sessionData);
+        if (user == null)
+        {
+            return Unauthorized();
+        }
+        var transactions = _budgetService.PostTransactions(user.Id, command);
+        return Ok(transactions);
+    }
 
 
 }
