@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {Component, OnInit} from '@angular/core';
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {DataService} from "../../services/data.service";
 
@@ -10,21 +10,19 @@ export interface budgedElement {
   quantity: string;
 }
 
-const ELEMENT_DATA: budgedElement[] = [
-  {position: 1, name: 'Pizza', price: 1.0079, quantity: '2'},
-  {position: 2, name: 'Kartoffel', price: 4.0026, quantity: '30'},
-];
+const ELEMENT_DATA: budgedElement[] = [];
 
 @Component({
   selector: 'app-budget-view',
   templateUrl: './budget-view.component.html',
   styleUrls: ['./budget-view.component.css'],
 })
-export class BudgetViewComponent {
+export class BudgetViewComponent implements OnInit{
   displayedColumns: string[] = ['position', 'name', 'price', 'quantity'];
   dataSource = ELEMENT_DATA;
   budgetModel: any = {};
-  backendUrl = 'pending';
+  backendUrl = 'http://localhost:5000/post/transactions';
+  backendUrlGet: string = 'http://localhost:5000/transactions';
 
   constructor(
     private http: HttpClient,
@@ -38,18 +36,52 @@ export class BudgetViewComponent {
   submitBudget() {
     const formData = {
       itemName: this.budgetModel.itemName,
-      Amount: this.budgetModel.Amount,
-      Quantity: this.budgetModel.Quantity,
+      itemAmount: this.budgetModel.itemAmount,
+      totalCost: this.budgetModel.totalCost,
     };
-    this.http.post(this.backendUrl, formData).subscribe(
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    const requestOptions = {
+      headers: headers
+    };
+    this.http.post(this.backendUrl, formData, requestOptions).subscribe(
       (response: any) => {
         console.log(response);
+        this.getTransactions();
       },
       (error) => {
         console.error('An error occurred:', error);
       },
     );
     this.budgetModel = [];
+  }
+
+  getTransactions() {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    const requestOptions = {
+      headers: headers
+    };
+    this.http.get<any>(this.backendUrlGet, requestOptions).subscribe(
+      (data: any[]) => {
+        this.dataSource = data.map((item, index) => ({
+          position: index + 1,
+          name: item.itemName,
+          price: item.totalCost,
+          quantity: item.itemAmount.toString()
+        }));
+      },
+      error => {
+        console.error('Error:', error);
+      }
+    );
+  }
+  ngOnInit():void{
+    if(localStorage.getItem('token')){
+      this.getTransactions();
+    }
   }
 
 }
