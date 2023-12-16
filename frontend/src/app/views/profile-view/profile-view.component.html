@@ -1,42 +1,41 @@
-<ion-grid [fixed]="true"  *ngIf="user">
-<ion-row >
-  <ion-col size="6">
-    <ion-avatar>
-      <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-    </ion-avatar>
-  </ion-col>
-</ion-row>
+<ion-grid [fixed]="true" *ngIf="user">
   <ion-row>
-    <ion-col size="4">
-      Name: {{ user[0].Name }}
+    <ion-col size="6">
+      <ion-avatar>
+        <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+      </ion-avatar>
     </ion-col>
   </ion-row>
   <ion-row>
     <ion-col size="4">
-      Lastname: {{ user[0].Lastname }}
+      Name: {{ user.firstname }}
     </ion-col>
   </ion-row>
   <ion-row>
     <ion-col size="4">
-      Username: {{ user[0].Username }}
+      Lastname: {{ user.lastname }}
     </ion-col>
   </ion-row>
   <ion-row>
     <ion-col size="4">
-      E-mail: {{ user[0].Email }}
+      Username: {{ user.username }}
     </ion-col>
   </ion-row>
   <ion-row>
     <ion-col size="4">
-      University: {{ user[0].University }}
+      E-mail: {{ user.userEmail }}
     </ion-col>
   </ion-row>
   <ion-row>
     <ion-col size="4">
-      Birthday: {{ user[0].Birthday }}
+      University: {{ user.education }}
     </ion-col>
   </ion-row>
-  <ion-button  (click)="changeInfo()"> Edit </ion-button>
+  <ion-row>
+    <ion-col size="4">
+      Birthday: {{ user.birthDate | date:'shortDate' }}
+    </ion-col>
+  </ion-row>
+  <ion-button >Edit Password</ion-button>
+  <ion-button (click)="changeInfo()">Edit</ion-button>
 </ion-grid>
-
-

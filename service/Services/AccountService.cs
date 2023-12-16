@@ -62,9 +62,19 @@ public class AccountService
         return _userRepository.GetById(data.UserId);
     }
     
-    public User? UpdateEmail(int userId, string newEmail)
+    public User? UpdateUser(int userId, UpdateUserCommandModel model)
     {
-        return _userRepository.UpdateEmail(userId, newEmail);
+        return _userRepository.UpdateUser(
+            userId: userId,
+            newEmail: model.UserEmail,
+            newUsername: model.Username,
+            newFirstName: model.Firstname,
+            newLastName: model.Lastname,
+            newEducation: model.Education,
+            newBirthDate: model.BirthDate,
+            newProfile: model.ProfilePhoto
+        );
+        
     }
     
     public User? UpdatePassword(int userId, string newPassword)
