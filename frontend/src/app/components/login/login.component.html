@@ -1,6 +1,6 @@
 <ion-content class="login-view">
     <form  (ngSubmit)="login()">
-    <ion-item class="inputEmail">
+    <ion-item class="inputEmail" lines="none">
       <ion-input
         required="true"
         class="login-email"
@@ -10,7 +10,7 @@
         [(ngModel)]="loginModel.email"
       ></ion-input>
     </ion-item>
-    <ion-item class="inputPassword">
+    <ion-item class="inputPassword" lines="none">
       <ion-input
         required="true"
         class="login-password"
@@ -21,10 +21,10 @@
       ></ion-input>
     </ion-item>
 
-    <ion-item class="inputLogin">
+    <ion-item class="inputLogin" lines="none">
       <ion-button class="loginHome" type="submit">Login</ion-button>
     </ion-item>
   </form>
 
-  <a [routerLink]="['/register']">Register new user</a>
+  <a class="register" [routerLink]="['/register']">Register new user</a>
 </ion-content>

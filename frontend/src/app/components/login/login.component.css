@@ -1,4 +1,4 @@
-.login-box{
+.login-view{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -34,5 +34,6 @@
 
 .inputEmail, .inputPassword, .inputLogin {
   --background: transparent;
+  max-width: 50%;
 }
 

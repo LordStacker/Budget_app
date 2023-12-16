@@ -8,8 +8,14 @@
       <ion-col size-sm="3" id="available">Available:</ion-col>
     </ion-row>
   <ion-row>
-    <ion-col  size-sm="3" push="3" >9823471782477238 kr</ion-col>
-    <ion-col  size-sm="3" push="3" >-15 kr</ion-col>
+    <ion-col  size-sm="3" push="3" >
+      {{ amounts.month }}
+    </ion-col>
+    <ion-col  size-sm="3" push="3" >
+
+      {{ amounts.avaiable }}
+
+    </ion-col>
   </ion-row>
   <ion-row class="items">
     <form (ngSubmit)="submitBudget()">
@@ -22,7 +28,7 @@
           required="true"
           aria-label="Primary input"
           color="primary"
-          placeholder="Item name"
+          placeholder="Name of Purchase"
           name="itemName"
           [(ngModel)]="budgetModel.itemName"
           type="text"
@@ -34,7 +40,7 @@
           required="true"
           aria-label="Secondary input"
           color="secondary"
-          placeholder="Amount"
+          placeholder="Quantity"
           name="itemAmount"
           [(ngModel)]="budgetModel.itemAmount"
           type="number"
@@ -46,7 +52,7 @@
             required="true"
             aria-label="Tertiary input"
             color="tertiary"
-            placeholder="Quantity"
+            placeholder="Cost"
             name="totalCost"
             [(ngModel)]="budgetModel.totalCost"
             type="number"

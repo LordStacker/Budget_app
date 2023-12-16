@@ -23,6 +23,12 @@ export class BudgetViewComponent implements OnInit{
   budgetModel: any = {};
   backendUrl = 'http://localhost:5000/post/transactions';
   backendUrlGet: string = 'http://localhost:5000/transactions';
+  backendUrlAmount: string = 'http://localhost:5000/api/get-current-amount';
+  backendUrlTotalAmount: string = 'http://localhost:5000/api/total-amount';
+  amounts: any = {
+    month: '',
+    avaiable: ''
+  }
 
   constructor(
     private http: HttpClient,
@@ -46,15 +52,58 @@ export class BudgetViewComponent implements OnInit{
       headers: headers
     };
     this.http.post(this.backendUrl, formData, requestOptions).subscribe(
-      (response: any) => {
-        console.log(response);
+      (r: any) => {
         this.getTransactions();
       },
-      (error) => {
-        console.error('An error occurred:', error);
+      (e) => {
+        console.error('An error occurred:', e);
       },
     );
+
     this.budgetModel = [];
+  }
+  getAmounts() {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    const requestOptions = {
+      headers: headers
+    };
+    this.http.get<any>(this.backendUrlAmount, requestOptions).subscribe(
+      (data: any) => {
+        console.log(data)
+        this.amounts.month = data
+      },
+      error => {
+        console.error('Error:', error);
+      }
+    );
+    this.http.get<any>(this.backendUrlTotalAmount, requestOptions).subscribe(
+      (data: any) => {
+        console.log(data)
+        this.amounts.avaiable = data
+      },
+      error => {
+        console.error('Error:', error);
+      }
+    );
+  }
+  getAmounts2() {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    const requestOptions = {
+      headers: headers
+    };
+    this.http.get<any>(this.backendUrlTotalAmount, requestOptions).subscribe(
+      (data: any) => {
+        console.log(data)
+        this.amounts.avaiable = data
+      },
+      error => {
+        console.error('Error:', error);
+      }
+    );
   }
 
   getTransactions() {
@@ -77,10 +126,13 @@ export class BudgetViewComponent implements OnInit{
         console.error('Error:', error);
       }
     );
+    console.log(this.amounts)
   }
   ngOnInit():void{
     if(localStorage.getItem('token')){
       this.getTransactions();
+      this.getAmounts();
+      this.getAmounts2();
     }
   }
 
