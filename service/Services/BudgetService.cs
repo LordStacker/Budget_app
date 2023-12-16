@@ -31,4 +31,9 @@ public class BudgetService
     {
         return _budgetRepository.UpdateStartAmount(userId, updatedStartAmount);
     }
+
+    public Transaction getTransactions(int userId)
+    {
+        return _budgetRepository.GetTransactions(userId);
+    }
 }
