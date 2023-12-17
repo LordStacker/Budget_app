@@ -53,4 +53,5 @@ export class ProfileViewComponent implements OnInit{
     });
     await modal.present();
   }
+
 }
