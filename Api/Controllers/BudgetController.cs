@@ -1,5 +1,6 @@
 using System.Net;
 using infrastructure.DataModels;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using service;
 using service.Models.Command;
@@ -26,8 +27,8 @@ public class BudgetController : ControllerBase
     }
 
     [HttpGet]
-    [Route("/api/get-current-amount")]
-    public IActionResult GetCurrentAmount([FromHeader(Name = "Authorization")] string authorizationHeader)
+    [Route("/api/get-amount")]
+    public IActionResult GetAmounts([FromHeader(Name = "Authorization")] string authorizationHeader)
     {
         if (!string.IsNullOrEmpty(authorizationHeader) && authorizationHeader.StartsWith("Bearer "))
         {
@@ -49,7 +50,14 @@ public class BudgetController : ControllerBase
 
         var user = _accountService.Get(sessionData);
         if (user == null) return Unauthorized();
-        return Ok(_budgetService.GetCurrentAmount(user.Id).CurrentAmount);
+        var budgetAmounts = _budgetService.GetAmounts(user.Id);
+        return Ok(new
+        {
+            CurrentAmount = budgetAmounts.CurrentAmount,
+            StartAmount = budgetAmounts.StartAmount
+        });
+
+        //return Ok(_budgetService.GetAmounts(user.Id).CurrentAmount .StartAmount);
     }
 
     [HttpPost]
@@ -82,6 +90,7 @@ public class BudgetController : ControllerBase
 
     }
 
+    /*
     [HttpGet]
     [Route("/api/total-amount")]
     public IActionResult GetStartAmount([FromHeader(Name = "Authorization")] string authorizationHeader)
@@ -108,7 +117,7 @@ public class BudgetController : ControllerBase
         if (user == null) return Unauthorized();
         return Ok(_budgetService.GetStartAmount(user.Id).StartAmount);
     }
-
+    */
 
 
     [HttpPut]

@@ -13,21 +13,21 @@ public class BudgetRepository
         _dataSource = dataSource;
     }
 
-    public Budget GetCurrentAmount(int userId)
+    public Budget GetAmounts(int userId)
     {
         const string sqlGetBmId = $@"SELECT bm_id FROM semester_project.user_to_bm WHERE user_id = @userId;";
-        const string sqlGetCurrentAmount = $@"SELECT 
+        const string sqlGetAmounts = $@"SELECT 
                                             bm_id as {nameof(Budget.Id)},
                                             start_amount as {nameof(Budget.StartAmount)},
                                             current_amount as {nameof(Budget.CurrentAmount)}
                                             FROM semester_project.budget_management WHERE bm_id = @bmId;";
-
+        
         using (var conn = _dataSource.OpenConnection())
         {
             try
             {
                 var bmId = conn.QueryFirstOrDefault<int>(sqlGetBmId, new { userId });
-                return conn.QueryFirst<Budget>(sqlGetCurrentAmount, new { bmId });
+                return conn.QueryFirst<Budget>(sqlGetAmounts, new { bmId });
             }
             catch (Exception e)
             {
@@ -62,6 +62,7 @@ public class BudgetRepository
         }
     }
 
+    /*
     public Budget GetStartAmount(int userId)
     {
         const string sqlBm = $@"SELECT bm_id FROM semester_project.user_to_bm WHERE user_id = @userId;";
@@ -82,6 +83,8 @@ public class BudgetRepository
             }
         }
     }
+    
+    */
 
 
     public Budget UpdateStartAmount(int userId, float updatedStartAmount)

@@ -13,9 +13,9 @@ public class BudgetService
         _budgetRepository = budgetRepository;
     }
 
-    public Budget GetCurrentAmount(int userId)
+    public Budget GetAmounts(int userId)
     {
-        return _budgetRepository.GetCurrentAmount(userId);
+        return _budgetRepository.GetAmounts(userId);
     }
     
     public Budget UpdateCurrentAmount(int userId, float newCurrentAmount)
@@ -23,10 +23,11 @@ public class BudgetService
         return _budgetRepository.UpdateCurrentAmount(userId, newCurrentAmount);
     }
     
-    public Budget GetStartAmount(int userId)
+    /*public Budget GetStartAmount(int userId)
     {
         return _budgetRepository.GetStartAmount(userId);  
     }
+    */
 
     public Budget UpdateStartAmount(int userId, float updatedStartAmount)
     {
