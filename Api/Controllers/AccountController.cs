@@ -112,7 +112,12 @@ public class AccountController : ControllerBase
             return Unauthorized();
         }
         
-        var user = _accountService.Get(sessionData);
+        LoginCommandModel loginModel = new LoginCommandModel();
+        loginModel.Email = model.UserEmail;
+        loginModel.Password = model.OldPassword;
+        
+        var user = _accountService.Authenticate(loginModel);
+        
         if (user == null) return Unauthorized();
 
         var updatedUser = _accountService.UpdatePassword(user.Id, model.NewPassword);

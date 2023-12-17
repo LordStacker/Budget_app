@@ -84,5 +84,6 @@ public class AccountService
         var hash = hashAlgorithm.HashPassword(newPassword, salt);
         _passwordHashRepository.Update(userId, hash, salt, hashAlgorithm.GetName());
         return _userRepository.GetById(userId);
+        
     }
 }
