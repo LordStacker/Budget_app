@@ -86,4 +86,9 @@ public class AccountService
         return _userRepository.GetById(userId);
         
     }
+    
+    public User? UpdateProfilePhoto(int userId, string image)
+    {
+        return _userRepository.UpdateProfilePhoto(userId, image);
+    }
 }
