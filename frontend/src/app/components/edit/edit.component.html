@@ -1,12 +1,12 @@
 <ion-content>
-  <form (ngSubmit)="editUser()">
+  <form (ngSubmit)="editUser()" #editForm="ngForm">
     <ion-item>
       <ion-input
         required="true"
         type="text"
         placeholder="Name"
         name="Name"
-        [(ngModel)]="editModel.firstname"
+        [(ngModel)]="userData.firstname"
       ></ion-input>
     </ion-item>
     <ion-item>
@@ -15,7 +15,7 @@
         type="text"
         placeholder="Lastname"
         name="Lastname"
-        [(ngModel)]="editModel.lastname"
+        [(ngModel)]="userData.lastname"
       ></ion-input>
     </ion-item>
     <ion-item>
@@ -24,16 +24,16 @@
         type="text"
         placeholder="Username"
         name="Username"
-        [(ngModel)]="editModel.username"
+        [(ngModel)]="userData.username"
       ></ion-input>
     </ion-item>
     <ion-item>
       <ion-input
         required="true"
         type="text"
-        placeholder="email"
+        placeholder="Email"
         name="email"
-        [(ngModel)]="editModel.userEmail"
+        [(ngModel)]="userData.userEmail"
       ></ion-input>
     </ion-item>
     <ion-item>
@@ -42,7 +42,7 @@
         type="text"
         placeholder="University"
         name="University"
-        [(ngModel)]="editModel.education"
+        [(ngModel)]="userData.education"
       ></ion-input>
     </ion-item>
     <ion-item>
@@ -51,14 +51,12 @@
         type="date"
         placeholder="Birthday"
         name="Birthday"
-        [(ngModel)]="editModel.birthDate"
+        [(ngModel)]="userData.birthDate"
       ></ion-input>
     </ion-item>
     <ion-item>
-      <ion-button type="submit">Submit</ion-button>
+      <ion-button type="submit" [disabled]="editForm.invalid">Submit</ion-button>
       <ion-button type="button" (click)="closeModal()">Cancel</ion-button>
     </ion-item>
   </form>
-
-
 </ion-content>

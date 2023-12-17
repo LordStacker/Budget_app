@@ -1,8 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Router } from '@angular/router';
-import {ModalController} from "@ionic/angular";
-import {DataService} from "../../services/data.service";
+import {ModalController, ToastController} from "@ionic/angular";
+import {DataService} from "../../../services/data.service";
+import {RegisterUserComponent} from "../register-user/register-user.component";
+import {TokenService} from "../../../services/token.service";
 
 
 @Component({
@@ -15,7 +17,10 @@ export class LoginComponent {
     private http: HttpClient,
     private router: Router,
     public dataService: DataService,
-    private modalController: ModalController
+    public tokenService: TokenService,
+    private modalController: ModalController,
+    private toastController: ToastController,
+
   ) {
 
   }
@@ -32,11 +37,16 @@ export class LoginComponent {
     };
 
     this.http.post(this.backendUrl, formData).subscribe(
-      (response: any) => {
-        localStorage.setItem('token', response.token);
+      async (response: any) => {
+        this.tokenService.setToken(response.token)
         this.dataService.isLoggedIn = true;
         this.getUserData();
-        this.router.navigate(['/']);
+        await this.router.navigate(['/']);
+        await (await this.toastController.create({
+          message: "Welcome back!",
+          color: "success",
+          duration: 5000
+        })).present();
         this.closeModal();
       },
       (error) => {
@@ -51,20 +61,26 @@ export class LoginComponent {
 
   getUserData() {
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${localStorage.getItem('token')}`
+      'Authorization': `Bearer ${this.tokenService.getToken()}`
     });
     const requestOptions = {
       headers: headers
     };
     this.http.get<any>('http://localhost:5000/api/account/me', requestOptions).subscribe(
       data => {
-        console.log(data);
         this.dataService.isUsername = data.username;
-        this.dataService.isUser = data;
       },
       error => {
         console.error('Error:', error);
       }
     );
+  }
+
+  async registrationModal() {
+    this.closeModal()
+    const modal = await this.modalController.create({
+      component: RegisterUserComponent,
+    });
+    await modal.present();
   }
 }

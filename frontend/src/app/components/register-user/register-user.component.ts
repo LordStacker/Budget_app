@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import {ModalController, ToastController} from "@ionic/angular";
 
 @Component({
   selector: 'app-register-user',
@@ -11,6 +12,8 @@ export class RegisterUserComponent {
   constructor(
     private router: Router,
     private http: HttpClient,
+    private modalController: ModalController,
+  private toastController: ToastController
   ) {}
 
   registerModel: any = {};
@@ -31,8 +34,13 @@ export class RegisterUserComponent {
       console.log(formData);
 
       this.http.post(this.backendUrl, formData).subscribe(
-        (response: any) => {
-          console.log(response);
+        async (response: any) => {
+          await this.modalController.dismiss();
+          await (await this.toastController.create({
+            message: "Thank you for signing up!",
+            color: "success",
+            duration: 5000
+          })).present();
         },
         (error) => {
           console.error('An error occurred:', error);
@@ -43,7 +51,6 @@ export class RegisterUserComponent {
   }
 
   onCancelClick() {
-    // Navigate to the "home" route when the "Cancel" button is clicked
-    if (this.router) this.router.navigate(['/']);
+    this.modalController.dismiss();
   }
 }

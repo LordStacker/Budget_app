@@ -1,5 +1,5 @@
 <div class="login-box">
-  <form (ngSubmit)="register()">
+  <form (ngSubmit)="register()"  #registrationForm="ngForm">
     <ion-item>
       <ion-input
         required="true"
@@ -75,9 +75,7 @@
         [(ngModel)]="registerModel.education"
       ></ion-input>
     </ion-item>
-
     <ion-item>
-
           <ion-input
             required="true"
             placeholder="Birthday"
@@ -85,17 +83,13 @@
             type="date"
             [(ngModel)]="registerModel.birthDate"
           ></ion-input>
-
     </ion-item>
 
     <ion-item>
-      <ion-button id="submitUser" type="submit">Submit</ion-button>
-    </ion-item>
-
-    <ion-item>
-      <ion-button (click)="onCancelClick()" id="cancelSubmit" type="button"
-        >Cancel</ion-button
-      >
+      <ion-button id="submitUser" type="submit" [disabled]="registrationForm.invalid">Submit</ion-button>
+      <ion-button (click)="onCancelClick()" id="cancelSubmit" type="button">
+        Cancel
+      </ion-button>
     </ion-item>
   </form>
 </div>
