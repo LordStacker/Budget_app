@@ -1,1 +1,8 @@
-<p>{{ActualMonth}}</p>
+<ion-content>
+  <ion-item>
+    <ion-label>New Budget:</ion-label>
+    <ion-input [(ngModel)]="ActualMonth" type="number"></ion-input>
+  </ion-item>
+  <ion-button (click)="updateItem()">Update</ion-button>
+  <ion-button (click)="closeModal()">Close</ion-button>
+</ion-content>

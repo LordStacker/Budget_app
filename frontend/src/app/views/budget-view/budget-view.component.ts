@@ -21,16 +21,15 @@ const ELEMENT_DATA: budgedElement[] = [];
   styleUrls: ['./budget-view.component.css'],
 })
 export class BudgetViewComponent implements OnInit{
-  displayedColumns: string[] = ['position', 'name', 'price', 'quantity'];
+  displayedColumns: string[] = ['position', 'name',  'quantity','price'];
   dataSource = ELEMENT_DATA;
   budgetModel: any = {};
   backendUrl = 'http://localhost:5000/post/transactions';
   backendUrlGet: string = 'http://localhost:5000/transactions';
-  backendUrlAmount: string = 'http://localhost:5000/api/get-current-amount';
-  backendUrlTotalAmount: string = 'http://localhost:5000/api/total-amount';
+  backendUrlTotalAmount: string = 'http://localhost:5000/api/get-current-amount';
   amounts: any = {
     month: '',
-    avaiable: ''
+    available: ''
   }
 
   constructor(
@@ -74,36 +73,11 @@ export class BudgetViewComponent implements OnInit{
     const requestOptions = {
       headers: headers
     };
-    this.http.get<any>(this.backendUrlAmount, requestOptions).subscribe(
-      (data: any) => {
-        console.log(data)
-        this.amounts.month = data
-      },
-      error => {
-        console.error('Error:', error);
-      }
-    );
     this.http.get<any>(this.backendUrlTotalAmount, requestOptions).subscribe(
       (data: any) => {
         console.log(data)
-        this.amounts.avaiable = data
-      },
-      error => {
-        console.error('Error:', error);
-      }
-    );
-  }
-  getAmounts2() {
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${this.tokenService.getToken()}`
-    });
-    const requestOptions = {
-      headers: headers
-    };
-    this.http.get<any>(this.backendUrlTotalAmount, requestOptions).subscribe(
-      (data: any) => {
-        console.log(data)
-        this.amounts.avaiable = data
+        this.amounts.month = data.startAmount
+        this.amounts.available = data.currentAmount
       },
       error => {
         console.error('Error:', error);
@@ -137,7 +111,6 @@ export class BudgetViewComponent implements OnInit{
     if(this.tokenService.getToken()){
       this.getTransactions();
       this.getAmounts();
-      this.getAmounts2();
     }
   }
   async UpdateAmount() {
@@ -148,6 +121,18 @@ export class BudgetViewComponent implements OnInit{
       }
     });
     await modal.present();
+    modal.onDidDismiss().then(() => {
+      this.getTransactions();
+      this.getAmounts();
+    });
+  }
+
+  calculateTotalPrice(): number {
+    let totalPrice = 0;
+    this.dataSource.forEach((item) => {
+      totalPrice += item.price;
+    });
+    return totalPrice;
   }
 
   async handleRowClick(row: any) {
@@ -158,5 +143,9 @@ export class BudgetViewComponent implements OnInit{
       }
     });
     await modal.present();
+    modal.onDidDismiss().then(() => {
+      this.getTransactions();
+      this.getAmounts();
+    });
   }
 }
