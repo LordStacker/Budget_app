@@ -85,7 +85,6 @@ export class BudgetViewComponent implements OnInit{
     );
     this.http.get<any>(this.backendUrlTotalAmount, requestOptions).subscribe(
       (data: any) => {
-        console.log(data)
         this.amounts.avaiable = data
       },
       error => {
@@ -102,7 +101,7 @@ export class BudgetViewComponent implements OnInit{
     };
     this.http.get<any>(this.backendUrlTotalAmount, requestOptions).subscribe(
       (data: any) => {
-        console.log(data)
+
         this.amounts.avaiable = data
       },
       error => {
@@ -148,6 +147,14 @@ export class BudgetViewComponent implements OnInit{
       }
     });
     await modal.present();
+  }
+
+  calculateTotalPrice(): number {
+    let totalPrice = 0;
+    this.dataSource.forEach((item) => {
+      totalPrice += item.price;
+    });
+    return totalPrice;
   }
 
   async handleRowClick(row: any) {

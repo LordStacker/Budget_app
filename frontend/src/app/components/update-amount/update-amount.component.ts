@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {ModalController} from "@ionic/angular";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {DataService} from "../../../services/data.service";
 import {TokenService} from "../../../services/token.service";
 
@@ -12,6 +12,7 @@ import {TokenService} from "../../../services/token.service";
 })
 export class UpdateAmountComponent {
   ActualMonth: any;
+  backendUrlPut: any = '';
   constructor(
 
     private http: HttpClient,
@@ -25,5 +26,29 @@ export class UpdateAmountComponent {
 
   closeModal() {
     this.modalController.dismiss();
+  }
+
+  updateItem() {
+    // Create an object with the updated item name
+    const requestBody = {
+      ActualMonth: this.ActualMonth
+    };
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.tokenService.getToken()}`
+    });
+    const requestOptions = {
+      headers: headers
+    };
+
+    this.http.put<any>(this.backendUrlPut, requestBody, requestOptions).subscribe(
+      (response: any) => {
+        console.log(response);
+        this.closeModal();
+      },
+      error => {
+        console.error('Error:', error);
+      }
+    );
   }
 }

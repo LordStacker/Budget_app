@@ -148,10 +148,63 @@ public class BudgetRepository
             {
                 throw new Exception("No matching bm_id found for the given user_id");
             }
-
         }
-        
-        
+    }
+    
+    public Transaction UpdateTransactions(int userId,int id,int ItemAmount, string ItemName, float TotalCost)
+    { 
+        const string sqlBmId = $@"SELECT bm_id FROM semester_project.user_to_bm WHERE user_id = @userId;";
+        const string sql = $@"
+    UPDATE semester_project.transaction 
+    SET 
+        item_name = @ItemName, 
+        item_amount = @ItemAmount, 
+        total_cost = @TotalCost 
+    WHERE 
+        bm_id = @bm_id and
+        transaction_id = @transaction_id
+    RETURNING
+        item_name as {nameof(Transaction.ItemName)},
+        item_amount as {nameof(Transaction.ItemAmount)},
+        total_cost as {nameof(Transaction.TotalCost)};
+";
+
+        using (var conn = _dataSource.OpenConnection())
+        {
+            var bmId = conn.QueryFirstOrDefault<int>(sqlBmId, new { userId });
+            if (bmId != 0 && bmId != null)
+            {
+                Console.WriteLine((sql, new { ItemName, ItemAmount, TotalCost,transaction_id = id, bm_id = bmId }));
+                return conn.QueryFirst<Transaction>(sql, new { ItemName, ItemAmount, TotalCost,transaction_id = id, bm_id = bmId });
+            }
+            else
+            {
+                throw new Exception("No matching bm_id found for the given user_id");
+            }
+        }
     }
 
+    public void DeleteTransaction(int userId, int id)
+    {
+        const string sqlBmId = "SELECT bm_id FROM semester_project.user_to_bm WHERE user_id = @userId;";
+        const string sql = @"
+        DELETE FROM semester_project.transaction 
+        WHERE 
+            bm_id = @bm_id AND
+            transaction_id = @transaction_id;
+    ";
+
+        using (var conn = _dataSource.OpenConnection())
+        {
+            var bmId = conn.QueryFirstOrDefault<int>(sqlBmId, new { userId });
+            if (bmId != 0 && bmId != null)
+            {
+                conn.Execute(sql, new { transaction_id = id, bm_id = bmId });
+            }
+            else
+            {
+                throw new Exception("No matching bm_id found for the given user_id");
+            }
+        }
+    }
 }

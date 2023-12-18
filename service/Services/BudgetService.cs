@@ -45,4 +45,18 @@ public class BudgetService
             command.ItemName,
             command.TotalCost);
     }
+    public Transaction UpdateTransactions(int userId, UpdateTransactions command)
+    {
+        return _budgetRepository.UpdateTransactions(
+            userId,
+            command.id,
+            command.ItemAmount,
+            command.ItemName,
+            command.TotalCost);
+    }
+
+    public void DeleteTransaction(int userId, int id)
+    { 
+        _budgetRepository.DeleteTransaction(userId, id);
+    }
 }
