@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Net.Mime;
+using Microsoft.AspNetCore.Mvc;
 using service;
 using service.Models.Command;
 using service.Services;
@@ -112,10 +113,44 @@ public class AccountController : ControllerBase
             return Unauthorized();
         }
         
-        var user = _accountService.Get(sessionData);
+        LoginCommandModel loginModel = new LoginCommandModel();
+        loginModel.Email = model.UserEmail;
+        loginModel.Password = model.OldPassword;
+        
+        var user = _accountService.Authenticate(loginModel);
+        
         if (user == null) return Unauthorized();
 
         var updatedUser = _accountService.UpdatePassword(user.Id, model.NewPassword);
+        return Ok(updatedUser);
+    }
+
+    [HttpPost]
+    [Route("api/account/upload/image")]
+    public IActionResult UploadImage([FromHeader(Name = "Authorization")] string authorizationHeader,
+        [FromBody] UploadPhotoCommandModel image)
+    {
+        if (!string.IsNullOrEmpty(authorizationHeader) && authorizationHeader.StartsWith("Bearer "))
+        {
+            string token = authorizationHeader.Substring("Bearer ".Length);
+
+            try
+            {
+                sessionData = _jwtService.ValidateAndDecodeToken(token);
+            }
+            catch (Exception e)
+            {
+                return Unauthorized(e);
+            }
+        }
+        else
+        {
+            return Unauthorized();
+        }
+        
+        var user = _accountService.Get(sessionData);
+        if (user == null) return Unauthorized();
+        var updatedUser = _accountService.UpdateProfilePhoto(user.Id, image.image);
         return Ok(updatedUser);
     }
 
