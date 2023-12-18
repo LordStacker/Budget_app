@@ -1,6 +1,6 @@
 ion-toolbar.toolbar {
     display: flex;
-    height: 70px;
+    max-height: 70px;
     min-width: 850px;
 }
 
@@ -25,7 +25,6 @@ ion-toolbar.toolbar {
     padding-left: 25px;
     font-family: "BankGothic Lt BT", serif;
     font-size: 120%;
-    --ion-text-color: black;
 }
 
 .loginBtn{
@@ -49,14 +48,14 @@ ion-toolbar.toolbar {
     font-size: 120%;
 }
 
-#homee {
-
-}
-
-ion-icon{
+ion-button {
     color: black;
 }
 
+
+.header {
+    min-width: 850px;
+}
 
 
 
