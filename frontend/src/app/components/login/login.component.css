@@ -1,10 +1,40 @@
-.login-box{
+.login-view{
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
 
-.login-password, .login-username{
-  max-width: 5vw;
+.login-email{
+  max-width: 250px;
+  background-color: lightgray;
+  border-radius: 10px;
+  margin-top: 20px;
+  margin-bottom: 5px;
 }
+
+.login-password{
+  max-width: 250px;
+  background-color: lightgray;
+  border-radius: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.register{
+  margin-left: 15px;
+  font-family: "BankGothic Lt BT", serif;
+}
+
+.loginHome{
+  --background: lightgrey;
+  border-radius: 10px;
+  font-size: 120%;
+  font-family: "BankGothic Lt BT", serif;
+}
+
+.inputEmail, .inputPassword, .inputLogin {
+  --background: transparent;
+  max-width: 50%;
+}
+

@@ -25,12 +25,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTableModule} from "@angular/material/table";
 import {DataService} from "../services/data.service";
 import { EditComponent } from './components/edit/edit.component';
+import {NgOptimizedImage} from "@angular/common";
 import {ErrorHttpInterceptor} from "../interceptors/error-http-interceptor";
 import {AuthHttpInterceptor} from "../interceptors/auth-http-interceptor";
 import {TokenService} from "../services/token.service";
 import {AuthenticatedGuard} from "./guard";
 import { UpdateAmountComponent } from './components/update-amount/update-amount.component';
 import { EditItemComponent } from './components/edit-item/edit-item.component';
+
 
 
 

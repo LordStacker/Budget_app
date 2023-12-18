@@ -1,0 +1,31 @@
+.profileView {
+    background-image: url("src/assets/images/budget-background.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 850px;
+}
+
+.profileGrid {
+    max-width: 500px;
+}
+
+.avatarRow {
+    display: flex;
+    justify-content: center;
+}
+
+#avatarCol {
+    display: flex;
+    background-size: cover;
+
+}
+
+#avatar {
+    height: 100px;
+    width: 100px;
+}
+
+.nameRow, .lastNameRow, .userRow
+
+

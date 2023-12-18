@@ -1,3 +1,55 @@
 table {
   width: 100%;
 }
+
+.budget-box {
+  background-image: url("src/assets/images/budget-background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 850px;
+}
+
+#refresh {
+  --background: lightgrey;
+  font-family: "BankGothic Lt BT", serif;
+}
+
+#addItem {
+  --background: lightgrey;
+  font-family: "BankGothic Lt BT", serif;
+  margin-bottom: 10px;
+}
+
+#startAmount {
+  font-family: "Arial-bold", serif;
+  font-size: 120%;
+  margin-top: 20px;
+}
+
+#available {
+  font-family: "Arial-bold", serif;
+  font-size: 120%;
+  margin-top: 20px;
+}
+
+#itemName {
+  background-color: lightgray;
+  border-radius: 10px;
+  margin-left: 5px;
+}
+
+#itemAmount {
+  background-color: lightgray;
+  border-radius: 10px;
+  margin-left: 5px;
+}
+
+#itemQuantity {
+  background-color: lightgray;
+  border-radius: 10px;
+  margin-left: 5px;
+}
+
+.items {
+  margin-top: 40px;
+}
