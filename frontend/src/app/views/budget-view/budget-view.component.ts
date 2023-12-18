@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Router} from "@angular/router";
 import {DataService} from "../../../services/data.service";
 import {TokenService} from "../../../services/token.service";
-import {EditComponent} from "../../components/edit/edit.component";
+import {EditItemComponent} from "../../components/edit-item/edit-item.component";
 import {ModalController} from "@ionic/angular";
 import {UpdateAmountComponent} from "../../components/update-amount/update-amount.component";
 
@@ -121,8 +120,9 @@ export class BudgetViewComponent implements OnInit{
     };
     this.http.get<any>(this.backendUrlGet, requestOptions).subscribe(
       (data: any[]) => {
+        console.log(data)
         this.dataSource = data.map((item, index) => ({
-          position: index + 1,
+          position: item.id,
           name: item.itemName,
           price: item.totalCost,
           quantity: item.itemAmount.toString()
@@ -132,7 +132,6 @@ export class BudgetViewComponent implements OnInit{
         console.error('Error:', error);
       }
     );
-    console.log(this.amounts)
   }
   ngOnInit():void{
     if(this.tokenService.getToken()){
@@ -145,10 +144,19 @@ export class BudgetViewComponent implements OnInit{
     const modal = await this.modalController.create({
       component: UpdateAmountComponent,
       componentProps: {
-        ActualMonth: this.amounts.month // Pass the user data to the EditComponent
+        ActualMonth: this.amounts.month
       }
     });
     await modal.present();
   }
 
+  async handleRowClick(row: any) {
+    const modal = await this.modalController.create({
+      component: EditItemComponent,
+      componentProps: {
+        item: row
+      }
+    });
+    await modal.present();
+  }
 }

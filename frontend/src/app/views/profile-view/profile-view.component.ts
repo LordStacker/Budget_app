@@ -12,7 +12,6 @@ import {TokenService} from "../../../services/token.service";
   styleUrls: ['./profile-view.component.css']
 })
 export class ProfileViewComponent implements OnInit{
-  originalUserData: any;
   user: UserInfo | undefined;
   backendUrl = 'pending';
 

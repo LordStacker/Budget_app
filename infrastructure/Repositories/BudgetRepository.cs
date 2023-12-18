@@ -109,7 +109,7 @@ public class BudgetRepository
     public IEnumerable<Transaction> GetTransactions(int userId)
     {
         const string sqlBmId = $@"SELECT bm_id FROM semester_project.user_to_bm WHERE user_id = @userId;";
-        const string sql = $@"SELECT item_name as {nameof(Transaction.ItemName)}, item_amount as {nameof(Transaction.ItemAmount)}, total_cost as {nameof(Transaction.TotalCost)} FROM semester_project.transaction where bm_id= @bmId";
+        const string sql = $@"SELECT transaction_id as {nameof(Transaction.id)}, item_name as {nameof(Transaction.ItemName)}, item_amount as {nameof(Transaction.ItemAmount)}, total_cost as {nameof(Transaction.TotalCost)} FROM semester_project.transaction where bm_id= @bmId";
         using (var conn = _dataSource.OpenConnection())
         {
             var bmId = conn.QueryFirstOrDefault<int>(sqlBmId, new { userId });
