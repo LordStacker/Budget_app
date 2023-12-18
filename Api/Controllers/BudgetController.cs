@@ -1,5 +1,3 @@
-using System.Net;
-using infrastructure.DataModels;
 using Microsoft.AspNetCore.Mvc;
 using service;
 using service.Models.Command;
@@ -14,7 +12,7 @@ public class BudgetController : ControllerBase
     private readonly AccountService _accountService;
     private readonly JwtService _jwtService;
     private readonly ILogger<BudgetController> _logger;
-    private SessionData sessionData;
+    private SessionData _sessionData;
 
     public BudgetController(AccountService accountService, JwtService jwtService, BudgetService budgetService,
         ILogger<BudgetController> logger)
@@ -23,6 +21,7 @@ public class BudgetController : ControllerBase
         _jwtService = jwtService;
         _budgetService = budgetService;
         _logger = logger;
+        
     }
 
     [HttpGet]
@@ -35,7 +34,7 @@ public class BudgetController : ControllerBase
 
             try
             {
-                sessionData = _jwtService.ValidateAndDecodeToken(token);
+                _sessionData = _jwtService.ValidateAndDecodeToken(token);
             }
             catch (Exception e)
             {
@@ -47,9 +46,9 @@ public class BudgetController : ControllerBase
             return Unauthorized();
         }
 
-        var user = _accountService.Get(sessionData);
+        var user = _accountService.Get(_sessionData);
         if (user == null) return Unauthorized();
-        return Ok(_budgetService.GetCurrentAmount(user.Id).CurrentAmount);
+        return Ok(_budgetService.GetCurrentAmount(user.Id));
     }
 
     [HttpPost]
@@ -63,7 +62,7 @@ public class BudgetController : ControllerBase
 
             try
             {
-                sessionData = _jwtService.ValidateAndDecodeToken(token);
+                _sessionData = _jwtService.ValidateAndDecodeToken(token);
             }
             catch (Exception e)
             {
@@ -75,42 +74,12 @@ public class BudgetController : ControllerBase
             return Unauthorized();
         }
 
-        var user = _accountService.Get(sessionData);
+        var user = _accountService.Get(_sessionData);
         if (user == null) return Unauthorized();
         var updatedBudget = _budgetService.UpdateCurrentAmount(user.Id, command.NewCurrentAmount);
         return Ok(updatedBudget);
 
     }
-
-    [HttpGet]
-    [Route("/api/total-amount")]
-    public IActionResult GetStartAmount([FromHeader(Name = "Authorization")] string authorizationHeader)
-    {
-        if (!string.IsNullOrEmpty(authorizationHeader) && authorizationHeader.StartsWith("Bearer "))
-        {
-            string token = authorizationHeader.Substring("Bearer ".Length);
-
-            try
-            {
-                sessionData = _jwtService.ValidateAndDecodeToken(token);
-            }
-            catch (Exception e)
-            {
-                return Unauthorized(e);
-            }
-        }
-        else
-        {
-            return Unauthorized();
-        }
-
-        var user = _accountService.Get(sessionData);
-        if (user == null) return Unauthorized();
-        return Ok(_budgetService.GetStartAmount(user.Id).StartAmount);
-    }
-
-
-
     [HttpPut]
     [Route("/api/update-total-amount")]
     public IActionResult UpdateStartAmount([FromHeader(Name = "Authorization")] string authorizationHeader,
@@ -123,7 +92,7 @@ public class BudgetController : ControllerBase
 
             try
             {
-                sessionData = _jwtService.ValidateAndDecodeToken(token);
+                _sessionData = _jwtService.ValidateAndDecodeToken(token);
             }
             catch (Exception e)
             {
@@ -136,7 +105,7 @@ public class BudgetController : ControllerBase
             return Unauthorized();
         }
 
-        var user = _accountService.Get(sessionData);
+        var user = _accountService.Get(_sessionData);
         if (user == null)
         {
             return Unauthorized();
@@ -148,7 +117,7 @@ public class BudgetController : ControllerBase
 
     [HttpGet]
     [Route("/transactions")]
-    public IActionResult getTransactions([FromHeader(Name = "Authorization")] string authorizationHeader)
+    public IActionResult GetTransactions([FromHeader(Name = "Authorization")] string authorizationHeader)
     {
         if (!string.IsNullOrEmpty(authorizationHeader) && authorizationHeader.StartsWith("Bearer "))
         {
@@ -156,7 +125,7 @@ public class BudgetController : ControllerBase
 
             try
             {
-                sessionData = _jwtService.ValidateAndDecodeToken(token);
+                _sessionData = _jwtService.ValidateAndDecodeToken(token);
             }
             catch (Exception e)
             {
@@ -168,12 +137,12 @@ public class BudgetController : ControllerBase
         {
             return Unauthorized();
         }
-        var user = _accountService.Get(sessionData);
+        var user = _accountService.Get(_sessionData);
         if (user == null)
         {
             return Unauthorized();
         }
-        var transactions = _budgetService.getTransactions(user.Id);
+        var transactions = _budgetService.GetTransactions(user.Id);
         return Ok(transactions);
 }
     [HttpPost]
@@ -187,7 +156,7 @@ public class BudgetController : ControllerBase
 
             try
             {
-                sessionData = _jwtService.ValidateAndDecodeToken(token);
+                _sessionData = _jwtService.ValidateAndDecodeToken(token);
             }
             catch (Exception e)
             {
@@ -199,13 +168,76 @@ public class BudgetController : ControllerBase
         {
             return Unauthorized();
         }
-        var user = _accountService.Get(sessionData);
+        var user = _accountService.Get(_sessionData);
         if (user == null)
         {
             return Unauthorized();
         }
         var transactions = _budgetService.PostTransactions(user.Id, command);
         return Ok(transactions);
+    }
+    [HttpPut]
+    [Route("/update/transactions")]
+    public IActionResult UpdateTransaction([FromHeader(Name = "Authorization")] string authorizationHeader,
+        [FromBody] UpdateTransactions command)
+    {
+        if (!string.IsNullOrEmpty(authorizationHeader) && authorizationHeader.StartsWith("Bearer "))
+        {
+            string token = authorizationHeader.Substring("Bearer ".Length);
+
+            try
+            {
+                _sessionData = _jwtService.ValidateAndDecodeToken(token);
+            }
+            catch (Exception e)
+            {
+                return Unauthorized(e);
+            }
+        }
+
+        else
+        {
+            return Unauthorized();
+        }
+        var user = _accountService.Get(_sessionData);
+        if (user == null)
+        {
+            return Unauthorized();
+        }
+        var transactions = _budgetService.UpdateTransactions(user.Id, command);
+        return Ok(transactions);
+    }
+    
+    [HttpDelete]
+    [Route("/delete/transactions/{id}")]
+    public IActionResult DeleteTransaction([FromHeader(Name = "Authorization")] string authorizationHeader,
+        int id)
+    {
+        if (!string.IsNullOrEmpty(authorizationHeader) && authorizationHeader.StartsWith("Bearer "))
+        {
+            string token = authorizationHeader.Substring("Bearer ".Length);
+
+            try
+            {
+                _sessionData = _jwtService.ValidateAndDecodeToken(token);
+            }
+            catch (Exception e)
+            {
+                return Unauthorized(e);
+            }
+        }
+
+        else
+        {
+            return Unauthorized();
+        }
+        var user = _accountService.Get(_sessionData);
+        if (user == null)
+        {
+            return Unauthorized();
+        }
+        _budgetService.DeleteTransaction(user.Id, id);
+        return Ok(new { message = "Transaction deleted successfully" });
     }
 
 

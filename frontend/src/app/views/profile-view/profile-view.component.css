@@ -32,6 +32,7 @@
     font-family: "BankGothic Lt BT", serif;
 }
 
+
 #nameCol, #lastNameCol, #userCol, #emailCol, #uniCol, #birthCol {
     min-width: 300px;
 }

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {ModalController, NavParams} from "@ionic/angular";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {DataService} from "../../../services/data.service";
 import {TokenService} from "../../../services/token.service";
 
@@ -11,22 +11,59 @@ import {TokenService} from "../../../services/token.service";
 })
 export class EditItemComponent {
   item: any;
+  backendUrlDel: any = 'http://localhost:5000/delete/transactions/'
+  backendUrlPut: any = 'http://localhost:5000/update/transactions'
 
 
 
   constructor(
     private navParams: NavParams,
     private modalController: ModalController,
+    public tokenService: TokenService,
+    private http: HttpClient,
     ) {
     this.item = this.navParams.get('item');
   }
   updateItem() {
-    console.log("update")
+    const requestBody = {
+      id: this.item.position,
+      itemName: this.item.name,
+      itemAmount: this.item.quantity,
+      totalCost: this.item.price
+    };
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.tokenService.getToken()}`
+    });
+    const requestOptions = {
+      headers: headers
+    };
+    this.http.put<any>(this.backendUrlPut,requestBody, requestOptions).subscribe(
+      (response:any) => {
+        console.log(response)
+      },
+      error => {
+        console.error('Error:', error);
+      }
+    );
     this.closeModal();
   }
 
   deleteItem() {
-    console.log("delete")
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.tokenService.getToken()}`
+    });
+    const requestOptions = {
+      headers: headers
+    };
+    this.http.delete<any>(this.backendUrlDel+this.item.position, requestOptions).subscribe(
+      (response:any) => {
+        console.log(response)
+      },
+      error => {
+        console.error('Error:', error);
+      }
+    );
     this.closeModal();
   }
 
