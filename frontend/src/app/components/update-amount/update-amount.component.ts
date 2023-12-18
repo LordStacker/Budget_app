@@ -3,7 +3,6 @@ import {ModalController} from "@ionic/angular";
 import {HttpClient} from "@angular/common/http";
 import {DataService} from "../../../services/data.service";
 import {TokenService} from "../../../services/token.service";
-import {UserInfo} from "../../model/profile-info.model";
 
 
 @Component({

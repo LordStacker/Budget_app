@@ -30,6 +30,7 @@ import {AuthHttpInterceptor} from "../interceptors/auth-http-interceptor";
 import {TokenService} from "../services/token.service";
 import {AuthenticatedGuard} from "./guard";
 import { UpdateAmountComponent } from './components/update-amount/update-amount.component';
+import { EditItemComponent } from './components/edit-item/edit-item.component';
 
 
 
@@ -57,6 +58,7 @@ const routes: Routes = [
     BudgetViewComponent,
     EditComponent,
     UpdateAmountComponent,
+    EditItemComponent,
   ],
   imports: [
     RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
