@@ -3,7 +3,7 @@
     <ion-item slot="start" class="logo">
       <ion-label id="logo-name">Budg'it</ion-label>
     </ion-item>
-    <ion-button class="homeBtn" routerLink="/"><ion-icon id="homee" slot="start" name="home"></ion-icon>Home</ion-button>
+    <ion-button class="homeBtn" routerLink="/"><ion-icon id="homee" slot="start" src="src/assets/images/house.svg"></ion-icon>Home</ion-button>
     <ion-button *ngIf="dataService.isLoggedIn" class="profileBtn" routerLink="/profile"><ion-icon slot="start" name="person-outline"></ion-icon>Profile</ion-button>
     <ion-button *ngIf="dataService.isLoggedIn" class="budgetBtn" routerLink="/budget"><ion-icon slot="start" name="cash-outline"></ion-icon>Budget</ion-button>
     <ion-title slot="end">{{dataService.isLoggedIn ? dataService.isUsername : ''}}</ion-title>

@@ -22,38 +22,38 @@ ion-toolbar.toolbar {
 
 .homeBtn{
     --background: lightgrey;
-    margin-left: 50px;
+    padding-left: 25px;
     font-family: "BankGothic Lt BT", serif;
     font-size: 120%;
+    --ion-text-color: black;
 }
 
 .loginBtn{
     --background: darkred;
-    margin-right: 25px;
+    padding-right: 25px;
     font-family: "BankGothic Lt BT", serif;
     font-size: 120%;
 }
 
 .budgetBtn{
     --background: lightgray;
-    margin-left: 50px;
+    padding-left: 50px;
     font-family: "BankGothic Lt BT", serif;
     font-size: 120%;
 }
 
 .profileBtn{
     --background: lightgray;
-    margin-left: 50px;
+    padding-left: 50px;
     font-family: "BankGothic Lt BT", serif;
     font-size: 120%;
 }
 
-ion-icon#homee {
-    color: black;
+#homee {
 
 }
 
-ion-icon.md.hydrated {
+ion-icon{
     color: black;
 }
 
