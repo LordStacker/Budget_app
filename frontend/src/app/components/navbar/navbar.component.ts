@@ -1,8 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import {ModalController, ToastController} from '@ionic/angular';
 import { LoginComponent } from '../login/login.component';
-import {DataService} from "../../services/data.service";
+import {DataService} from "../../../services/data.service";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {TokenService} from "../../../services/token.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-navbar',
@@ -15,11 +17,14 @@ export class NavbarComponent implements OnInit{
   constructor(
     public dataService: DataService,
     private modalController: ModalController,
+    public tokenService: TokenService,
     private http: HttpClient,
+    private router: Router,
+    private toastController: ToastController,
   ) {
   }
   ngOnInit():void{
-    if(localStorage.getItem('token')){
+    if(this.tokenService.getToken()){
       this.dataService.isLoggedIn = true;
       this.getUserData();
     }
@@ -27,7 +32,7 @@ export class NavbarComponent implements OnInit{
   getUserData() {
     try {
       const headers = new HttpHeaders({
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
+        'Authorization': `Bearer ${this.tokenService.getToken()}`
       });
       const requestOptions = {
         headers: headers
@@ -36,7 +41,6 @@ export class NavbarComponent implements OnInit{
       this.http.get<any>('http://localhost:5000/api/account/me', requestOptions).subscribe(
         data => {
           this.dataService.isUsername = data.username;
-          this.dataService.isUser = data;
         },
         e => {
           console.error('Your token has been expired');
@@ -53,8 +57,16 @@ export class NavbarComponent implements OnInit{
 
   async toggleLoginStatus() {
     if (this.dataService.isLoggedIn) {
-      localStorage.removeItem('token');
+      this.tokenService.clearToken()
       this.dataService.isLoggedIn = false;
+      this.dataService.isUser = undefined;
+      this.dataService.isUsername = '';
+      await (await this.toastController.create({
+        message: 'Successfully logged out',
+        duration: 5000,
+        color: 'success',
+      })).present()
+      await this.router.navigate(['/']);
     } else {
       const modal = await this.modalController.create({
         component: LoginComponent,

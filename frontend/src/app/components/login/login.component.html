@@ -1,5 +1,5 @@
 <ion-content class="login-view">
-    <form  (ngSubmit)="login()">
+    <form (ngSubmit)="login()" #loginForm="ngForm">
     <ion-item class="inputEmail" lines="none">
       <ion-input
         required="true"
@@ -8,6 +8,7 @@
         placeholder=" Email"
         name="email"
         [(ngModel)]="loginModel.email"
+
       ></ion-input>
     </ion-item>
     <ion-item class="inputPassword" lines="none">
@@ -18,13 +19,13 @@
         placeholder=" Password"
         name="password"
         [(ngModel)]="loginModel.password"
+
       ></ion-input>
     </ion-item>
-
-    <ion-item class="inputLogin" lines="none">
-      <ion-button class="loginHome" type="submit">Login</ion-button>
+        <ion-item class="inputLogin" lines="none">
+      <ion-button class="loginHome" type="submit" [disabled]="loginForm.invalid">Login</ion-button>
     </ion-item>
   </form>
 
-  <a class="register" [routerLink]="['/register']">Register new user</a>
+  <ion-button class="register" (click)="registrationModal()">Register new user</ion-button>
 </ion-content>

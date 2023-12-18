@@ -1,7 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
-import {DataService} from "../../services/data.service";
+import {DataService} from "../../../services/data.service";
+import {TokenService} from "../../../services/token.service";
+import {EditComponent} from "../../components/edit/edit.component";
+import {ModalController} from "@ionic/angular";
+import {UpdateAmountComponent} from "../../components/update-amount/update-amount.component";
 
 export interface budgedElement {
   name: string;
@@ -33,6 +37,8 @@ export class BudgetViewComponent implements OnInit{
   constructor(
     private http: HttpClient,
     public dataService: DataService,
+    public tokenService: TokenService,
+    private modalController: ModalController
   ) {
 
   }
@@ -46,7 +52,7 @@ export class BudgetViewComponent implements OnInit{
       totalCost: this.budgetModel.totalCost,
     };
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${localStorage.getItem('token')}`
+      'Authorization': `Bearer ${this.tokenService.getToken()}`
     });
     const requestOptions = {
       headers: headers
@@ -64,7 +70,7 @@ export class BudgetViewComponent implements OnInit{
   }
   getAmounts() {
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${localStorage.getItem('token')}`
+      'Authorization': `Bearer ${this.tokenService.getToken()}`
     });
     const requestOptions = {
       headers: headers
@@ -90,7 +96,7 @@ export class BudgetViewComponent implements OnInit{
   }
   getAmounts2() {
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${localStorage.getItem('token')}`
+      'Authorization': `Bearer ${this.tokenService.getToken()}`
     });
     const requestOptions = {
       headers: headers
@@ -108,7 +114,7 @@ export class BudgetViewComponent implements OnInit{
 
   getTransactions() {
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${localStorage.getItem('token')}`
+      'Authorization': `Bearer ${this.tokenService.getToken()}`
     });
     const requestOptions = {
       headers: headers
@@ -129,11 +135,20 @@ export class BudgetViewComponent implements OnInit{
     console.log(this.amounts)
   }
   ngOnInit():void{
-    if(localStorage.getItem('token')){
+    if(this.tokenService.getToken()){
       this.getTransactions();
       this.getAmounts();
       this.getAmounts2();
     }
+  }
+  async UpdateAmount() {
+    const modal = await this.modalController.create({
+      component: UpdateAmountComponent,
+      componentProps: {
+        ActualMonth: this.amounts.month // Pass the user data to the EditComponent
+      }
+    });
+    await modal.present();
   }
 
 }
