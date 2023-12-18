@@ -2,7 +2,7 @@
 using infrastructure.Repositories;
 using service.Models.Command;
 
-namespace service;
+namespace service.Services;
 
 public class BudgetService
 {
@@ -23,17 +23,12 @@ public class BudgetService
         return _budgetRepository.UpdateCurrentAmount(userId, newCurrentAmount);
     }
     
-    public Budget GetStartAmount(int userId)
-    {
-        return _budgetRepository.GetStartAmount(userId);  
-    }
-
     public Budget UpdateStartAmount(int userId, float updatedStartAmount)
     {
         return _budgetRepository.UpdateStartAmount(userId, updatedStartAmount);
     }
 
-    public IEnumerable<Transaction> getTransactions(int userId)
+    public IEnumerable<Transaction> GetTransactions(int userId)
     {
         return _budgetRepository.GetTransactions(userId);
     }

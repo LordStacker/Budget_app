@@ -48,7 +48,7 @@ public class BudgetController : ControllerBase
 
         var user = _accountService.Get(_sessionData);
         if (user == null) return Unauthorized();
-        return Ok(_budgetService.GetCurrentAmount(user.Id).CurrentAmount);
+        return Ok(_budgetService.GetCurrentAmount(user.Id));
     }
 
     [HttpPost]
@@ -80,36 +80,6 @@ public class BudgetController : ControllerBase
         return Ok(updatedBudget);
 
     }
-
-    [HttpGet]
-    [Route("/api/total-amount")]
-    public IActionResult GetStartAmount([FromHeader(Name = "Authorization")] string authorizationHeader)
-    {
-        if (!string.IsNullOrEmpty(authorizationHeader) && authorizationHeader.StartsWith("Bearer "))
-        {
-            string token = authorizationHeader.Substring("Bearer ".Length);
-
-            try
-            {
-                _sessionData = _jwtService.ValidateAndDecodeToken(token);
-            }
-            catch (Exception e)
-            {
-                return Unauthorized(e);
-            }
-        }
-        else
-        {
-            return Unauthorized();
-        }
-
-        var user = _accountService.Get(_sessionData);
-        if (user == null) return Unauthorized();
-        return Ok(_budgetService.GetStartAmount(user.Id).StartAmount);
-    }
-
-
-
     [HttpPut]
     [Route("/api/update-total-amount")]
     public IActionResult UpdateStartAmount([FromHeader(Name = "Authorization")] string authorizationHeader,
@@ -172,7 +142,7 @@ public class BudgetController : ControllerBase
         {
             return Unauthorized();
         }
-        var transactions = _budgetService.getTransactions(user.Id);
+        var transactions = _budgetService.GetTransactions(user.Id);
         return Ok(transactions);
 }
     [HttpPost]

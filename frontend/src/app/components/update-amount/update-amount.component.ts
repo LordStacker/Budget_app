@@ -12,7 +12,7 @@ import {TokenService} from "../../../services/token.service";
 })
 export class UpdateAmountComponent {
   ActualMonth: any;
-  backendUrlPut: any = '';
+  backendUrlPut: any = 'http://localhost:5000/api/update-total-amount';
   constructor(
 
     private http: HttpClient,
@@ -29,9 +29,8 @@ export class UpdateAmountComponent {
   }
 
   updateItem() {
-    // Create an object with the updated item name
     const requestBody = {
-      ActualMonth: this.ActualMonth
+      updatedStartAmount: this.ActualMonth
     };
 
     const headers = new HttpHeaders({

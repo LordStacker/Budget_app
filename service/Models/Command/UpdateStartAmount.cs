@@ -6,4 +6,5 @@ public class UpdateStartAmountCommand
 {
     [Required]
     public float updatedStartAmount { get; set; }
+    
 }

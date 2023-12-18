@@ -12,7 +12,7 @@
       {{ amounts.month }}
     </ion-col>
     <ion-col size-sm="3" push="3">
-      {{ amounts.avaiable - calculateTotalPrice() }}
+      {{ amounts.available - calculateTotalPrice() }}
     </ion-col>
   </ion-row>
   <ion-row class="items">
@@ -75,14 +75,15 @@
             <th mat-header-cell *matHeaderCellDef> Name </th>
             <td mat-cell *matCellDef="let element"> {{element.name}} </td>
           </ng-container>
-          <ng-container matColumnDef="price">
-            <th mat-header-cell *matHeaderCellDef> Price Dkk </th>
-            <td mat-cell *matCellDef="let element"> {{element.price}} </td>
-          </ng-container>
           <ng-container matColumnDef="quantity">
             <th mat-header-cell *matHeaderCellDef> Quantity </th>
             <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
           </ng-container>
+          <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef> Price Dkk </th>
+            <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+          </ng-container>
+
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="handleRowClick(row)"></tr>
         </table>

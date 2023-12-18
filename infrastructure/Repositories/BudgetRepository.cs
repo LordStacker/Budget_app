@@ -31,7 +31,7 @@ public class BudgetRepository
             }
             catch (Exception e)
             {
-                Console.WriteLine("An error occured while executing the sql query");
+                Console.WriteLine("An error occured while executing the sql query "+ e);
                 throw;
             }
         }
@@ -61,33 +61,10 @@ public class BudgetRepository
             }
         }
     }
-
-    public Budget GetStartAmount(int userId)
-    {
-        const string sqlBm = $@"SELECT bm_id FROM semester_project.user_to_bm WHERE user_id = @userId;";
-        const string sqlStartAmount =
-            $@"SELECT bm_id as {nameof(Budget.Id)}, start_amount as {nameof(Budget.StartAmount)},
-                                            current_amount as {nameof(Budget.CurrentAmount)} FROM semester_project.budget_management WHERE bm_id = @bmId;";
-        using (var conn = _dataSource.OpenConnection())
-        {
-            var bmId = conn.QueryFirstOrDefault<int>(sqlBm, new { userId });
-
-            if (bmId != 0)
-            {
-                return conn.QueryFirst<Budget>(sqlStartAmount, new { bmId });
-            }
-            else
-            {
-                throw new Exception("No matching bm_id found for the given user_id");
-            }
-        }
-    }
-
-
     public Budget UpdateStartAmount(int userId, float updatedStartAmount)
     {
         const string sqlUpdate =
-            $@"UPDATE semester_project.budget_management SET start_amount = @updatedStartAmount WHERE bm_id = @bmId RETURNING bm_id as {nameof(Budget.Id)}, start_amount as {nameof(Budget.StartAmount)},
+            $@"UPDATE semester_project.budget_management SET start_amount = @updatedStartAmount, current_amount = @updatedStartAmount WHERE bm_id = @bmId RETURNING bm_id as {nameof(Budget.Id)}, start_amount as {nameof(Budget.StartAmount)},
                                             current_amount as {nameof(Budget.CurrentAmount)}";
         const string sqlBmId = $@"SELECT bm_id FROM semester_project.user_to_bm WHERE user_id = @userId;";
 
