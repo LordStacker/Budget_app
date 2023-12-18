@@ -1,39 +1,39 @@
 <div class="profileView">
-  <ion-grid [fixed]="true"  *ngIf="user">
-  <ion-row>
-    <ion-col size="6">
-      <ion-avatar>
+  <ion-grid [fixed]="true"  *ngIf="user" class="profileGrid">
+  <ion-row class="avatarRow">
+    <ion-col size="6" id="avatarCol">
+      <ion-avatar id="avatar">
         <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
       </ion-avatar>
     </ion-col>
   </ion-row>
-  <ion-row>
-    <ion-col size="4">
+  <ion-row class="nameRow">
+    <ion-col size="4" id="nameCol">
       Name: {{ user.firstname }}
     </ion-col>
   </ion-row>
-  <ion-row>
-    <ion-col size="4">
+  <ion-row class="lastNameRow">
+    <ion-col size="4" id="lastNameCol">
       Lastname: {{ user.lastname }}
     </ion-col>
   </ion-row>
-  <ion-row>
-    <ion-col size="4">
+  <ion-row class="userRow">
+    <ion-col size="4" id="userCol">
       Username: {{ user.username }}
     </ion-col>
   </ion-row>
-  <ion-row>
-    <ion-col size="4">
+  <ion-row class="emailRow">
+    <ion-col size="4" id="emailCol">
       E-mail: {{ user.userEmail }}
     </ion-col>
   </ion-row>
-  <ion-row>
-    <ion-col size="4">
+  <ion-row class="uniRow">
+    <ion-col size="4" id="uniCol">
       University: {{ user.education }}
     </ion-col>
   </ion-row>
-  <ion-row>
-    <ion-col size="4">
+  <ion-row class="birthRow">
+    <ion-col size="4" id="birthCol">
       Birthday: {{ user.birthDate | date:'shortDate' }}
     </ion-col>
   </ion-row>

@@ -5,3 +5,27 @@
     background-repeat: no-repeat;
     height: 850px;
 }
+
+.profileGrid {
+    max-width: 500px;
+}
+
+.avatarRow {
+    display: flex;
+    justify-content: center;
+}
+
+#avatarCol {
+    display: flex;
+    background-size: cover;
+
+}
+
+#avatar {
+    height: 100px;
+    width: 100px;
+}
+
+.nameRow, .lastNameRow, .userRow
+
+
