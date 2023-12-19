@@ -1,0 +1,31 @@
+#nameEdit, #lastNameEdit, #usernameEdit, #emailEdit, #uniEdit, #birthEdit {
+    --background: lightgrey;
+  border-radius: 10px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.editContent {
+  width: 300px;
+  --background: transparent;
+}
+
+#buttonItem {
+  --background: transparent;
+  justify-content: right;
+}
+
+#submitBtn {
+  --background: lightgrey;
+  font-family: "BankGothic Lt BT", serif;
+}
+
+#cancelBtn {
+  --background: lightgrey;
+  font-family: "BankGothic Lt BT", serif;
+}
+
+
+
+
+

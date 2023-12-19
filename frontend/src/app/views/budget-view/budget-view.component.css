@@ -52,4 +52,14 @@ table {
 
 .items {
   margin-top: 40px;
+  --background: transparent;
+}
+
+.gridBudget {
+  margin-top: 100px;
+  width: 950px;
+}
+
+.itemsGrid {
+  width: 950px;
 }

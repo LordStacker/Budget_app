@@ -1,0 +1,17 @@
+.amountUpd {
+  --background: lightgrey;
+  border-radius: 30px;
+  margin-top: 3px;
+  margin-left: 3px;
+  margin-right: 3px;
+}
+
+#updateBtn {
+  --background: lightgrey;
+  font-family: "BankGothic Lt BT", serif;
+}
+
+#closeBtn {
+  --background: lightgrey;
+  font-family: "BankGothic Lt BT", serif;
+}

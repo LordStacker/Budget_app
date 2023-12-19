@@ -5,22 +5,6 @@
   flex-direction: column;
 }
 
-.login-email{
-  max-width: 250px;
-  background-color: lightgray;
-  border-radius: 10px;
-  margin-top: 20px;
-  margin-bottom: 5px;
-}
-
-.login-password{
-  max-width: 250px;
-  background-color: lightgray;
-  border-radius: 10px;
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
-
 .register{
   margin-left: 15px;
   font-family: "BankGothic Lt BT", serif;
@@ -36,8 +20,11 @@
   font-family: "BankGothic Lt BT", serif;
 }
 
-.inputEmail, .inputPassword, .inputLogin {
-  --background: transparent;
+.inputEmail, .inputPassword {
+  --background: lightgrey;
   max-width: 50%;
+  margin: 5px;
+  border-radius: 20px;
 }
+
 

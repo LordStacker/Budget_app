@@ -1,8 +1,8 @@
 <ion-content>
-  <ion-item>
+  <ion-item lines="none" class="amountUpd">
     <ion-label>New Budget:</ion-label>
     <ion-input [(ngModel)]="ActualMonth" type="number"></ion-input>
   </ion-item>
-  <ion-button (click)="updateItem()">Update</ion-button>
-  <ion-button (click)="closeModal()">Close</ion-button>
+  <ion-button id="updateBtn" (click)="updateItem()">Update</ion-button>
+  <ion-button id="closeBtn" (click)="closeModal()">Close</ion-button>
 </ion-content>
