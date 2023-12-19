@@ -91,4 +91,9 @@ public class AccountService
     {
         return _userRepository.UpdateProfilePhoto(userId, image);
     }
+
+    public void DeleteUser(int userId)
+    {
+        _userRepository.DeleteUser(userId);
+    }
 }
