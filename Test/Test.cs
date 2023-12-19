@@ -73,7 +73,6 @@ namespace Test
             var jsonResponse = await response.Content.ReadAsStringAsync();
             var token = JObject.Parse(jsonResponse)["token"]?.ToString();
             _token = token;
-            Console.WriteLine(token);
         }
 
         [Test, Order(2)]
