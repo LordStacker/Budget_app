@@ -7,17 +7,26 @@
 }
 
 .profileGrid {
-    max-width: 500px;
+    max-width: 400px;
+    margin-top: 100px;
+    background-color: #84b1af;
+  border-radius: 20px;
+  min-height: 320px;
 }
 
 .avatarRow {
     display: flex;
     justify-content: center;
+
 }
 
 #avatarCol {
     display: flex;
     background-size: cover;
+  justify-content: center;
+
+
+
 
 }
 
@@ -26,5 +35,24 @@
     width: 100px;
 }
 
+.nameRow, .lastNameRow, .userRow, .emailRow, .uniRow, .birthRow {
+    justify-content: center;
+    font-family: "BankGothic Lt BT", serif;
+
+}
 
 
+#nameCol, #lastNameCol, #userCol, #emailCol, #uniCol, #birthCol {
+    min-width: 300px;
+
+}
+
+#editPassBtn {
+  --background: lightgrey;
+  float: right;
+}
+
+#editBtn {
+  --background: lightgrey;
+  float: right;
+}
