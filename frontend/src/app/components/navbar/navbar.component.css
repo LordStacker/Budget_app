@@ -25,6 +25,7 @@ ion-toolbar.toolbar {
     padding-left: 25px;
     font-family: "BankGothic Lt BT", serif;
     font-size: 120%;
+
 }
 
 .loginBtn{
@@ -32,6 +33,7 @@ ion-toolbar.toolbar {
     padding-right: 25px;
     font-family: "BankGothic Lt BT", serif;
     font-size: 120%;
+
 }
 
 .budgetBtn{
@@ -39,6 +41,7 @@ ion-toolbar.toolbar {
     padding-left: 50px;
     font-family: "BankGothic Lt BT", serif;
     font-size: 120%;
+
 }
 
 .profileBtn{
