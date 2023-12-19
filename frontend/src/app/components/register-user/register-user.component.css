@@ -1,0 +1,18 @@
+#regEmail, #regPassword, #regRePassword, #regUsername, #regFirstName, #regLastName, #regUni, #regBirth {
+  --background: lightgrey;
+  border-radius: 10px;
+  margin: 2px;
+}
+
+#submitUser, #cancelSubmit {
+  --background: lightgrey;
+  font-family: "BankGothic Lt BT", serif;
+}
+
+.regForm {
+  width: 300px;
+}
+
+.login-box {
+  justify-content: center;
+}
