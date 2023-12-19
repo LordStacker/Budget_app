@@ -5,6 +5,7 @@ import {ModalController, ToastController} from "@ionic/angular";
 import {DataService} from "../../../services/data.service";
 import {RegisterUserComponent} from "../register-user/register-user.component";
 import {TokenService} from "../../../services/token.service";
+import { environment} from "../../../environments/environment";
 
 
 @Component({
@@ -26,9 +27,7 @@ export class LoginComponent {
   }
 
   loginModel: any = {};
-  backendUrl = 'http://localhost:5000/api/account/login';
-
-  //Reset password action
+  backendUrl = '/api/account/login';
 
   login() {
     const formData = {
@@ -66,7 +65,7 @@ export class LoginComponent {
     const requestOptions = {
       headers: headers
     };
-    this.http.get<any>('http://localhost:5000/api/account/me', requestOptions).subscribe(
+    this.http.get<any>('/api/account/me', requestOptions).subscribe(
       data => {
         this.dataService.isUsername = data.username;
       },

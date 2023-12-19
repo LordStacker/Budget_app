@@ -17,7 +17,7 @@ export class RegisterUserComponent {
   ) {}
 
   registerModel: any = {};
-  backendUrl = 'http://localhost:5000/api/account/register';
+  backendUrl = '/api/account/register';
 
   register() {
     if (this.registerModel) {

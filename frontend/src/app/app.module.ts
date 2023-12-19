@@ -33,6 +33,7 @@ import {AuthenticatedGuard} from "./guard";
 import { UpdateAmountComponent } from './components/update-amount/update-amount.component';
 import { EditItemComponent } from './components/edit-item/edit-item.component';
 import { EditPasswordComponent } from './components/edit-password/edit-password.component';
+import {RewriteHttpInterceptor} from "../interceptors/rewritte-hhpt-interceptor";
 
 
 
@@ -78,6 +79,7 @@ const routes: Routes = [
     {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorHttpInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true},
+    { provide: HTTP_INTERCEPTORS, useClass: RewriteHttpInterceptor, multi: true },
     AuthenticatedGuard,
     TokenService
   ],
