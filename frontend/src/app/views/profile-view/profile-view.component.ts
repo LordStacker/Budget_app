@@ -32,7 +32,7 @@ export class ProfileViewComponent implements OnInit{
     const requestOptions = {
       headers: headers
     };
-    this.http.get<any>('http://localhost:5000/api/account/me', requestOptions).subscribe(
+    this.http.get<any>('/api/account/me', requestOptions).subscribe(
       data => {
         this.dataService.isUsername = data.username;
         this.user = data;

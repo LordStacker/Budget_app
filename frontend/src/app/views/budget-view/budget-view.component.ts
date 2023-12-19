@@ -24,9 +24,9 @@ export class BudgetViewComponent implements OnInit{
   displayedColumns: string[] = ['position', 'name',  'quantity','price'];
   dataSource = ELEMENT_DATA;
   budgetModel: any = {};
-  backendUrl = 'http://localhost:5000/post/transactions';
-  backendUrlGet: string = 'http://localhost:5000/transactions';
-  backendUrlTotalAmount: string = 'http://localhost:5000/api/get-current-amount';
+  backendUrl = '/post/transactions';
+  backendUrlGet: string = '/transactions';
+  backendUrlTotalAmount: string = '/api/get-current-amount';
   amounts: any = {
     month: '',
     available: ''

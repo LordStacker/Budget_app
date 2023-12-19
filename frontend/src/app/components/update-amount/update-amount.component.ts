@@ -12,7 +12,7 @@ import {TokenService} from "../../../services/token.service";
 })
 export class UpdateAmountComponent {
   ActualMonth: any;
-  backendUrlPut: any = 'http://localhost:5000/api/update-total-amount';
+  backendUrlPut: any = '/api/update-total-amount';
   constructor(
 
     private http: HttpClient,

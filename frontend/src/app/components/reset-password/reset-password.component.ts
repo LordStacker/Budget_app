@@ -13,7 +13,7 @@ export class ResetPasswordComponent {
     private http: HttpClient,
   ) {}
 
-  backendUrl = 'http://localhost:5000/api/account/reset';
+  backendUrl = '/api/account/reset';
 
   resetModel: any = {};
 
