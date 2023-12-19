@@ -4,7 +4,10 @@
 &lt;/AssemblyExplorer&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=ca98695f_002D35bb_002D4019_002D8970_002Dbbcb98c0ce5c/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="RegisterUserTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::868EA2BC-B955-4E40-B035-C3A466D15908::net8.0::Test.Test+RegistrationTests.RegisterUserTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::868EA2BC-B955-4E40-B035-C3A466D15908::net8.0::Test.Test+LoginTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::868EA2BC-B955-4E40-B035-C3A466D15908::net8.0::Test.RegistrationTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::868EA2BC-B955-4E40-B035-C3A466D15908::net8.0::Test.LoginUpdatePasswordTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::868EA2BC-B955-4E40-B035-C3A466D15908::net8.0::Test.LoginUpdatePasswordUser&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::868EA2BC-B955-4E40-B035-C3A466D15908::net8.0::Test.LoginUpdateUser&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::868EA2BC-B955-4E40-B035-C3A466D15908::net8.0::Test.DeleteUserTests&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

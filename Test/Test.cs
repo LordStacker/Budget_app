@@ -1,16 +1,14 @@
-﻿using System.Net;
+﻿using NUnit.Framework;
+using System.Net;
 using System.Net.Http.Headers;
 using System.Text;
-using Microsoft.Playwright.NUnit;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using NUnit.Framework;
 using Tests;
 
-namespace Test;
-
-public class Test : PageTest
+namespace Test
 {
+    [TestFixture, Order(1)]
     public class RegistrationTests
     {
         private readonly HttpClient _httpClient;
@@ -34,32 +32,30 @@ public class Test : PageTest
                 lastname = "Doe",
                 education = "Bachelor's Degree",
                 birthDate = new DateTime(1990, 1, 1),
-               
             };
 
             var jsonContent = JsonConvert.SerializeObject(registrationData);
             var httpContent = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-            
 
             var response = await _httpClient.PostAsync("/api/account/register", httpContent);
-            
+
             Assert.AreEqual(HttpStatusCode.Created, response.StatusCode);
         }
-
     }
-    
-    public class LoginTests
+
+    [TestFixture, Order(2)]
+    public class LoginUpdateUser
     {
         private readonly HttpClient _httpClient;
         private string? _token = "";
 
-        public LoginTests()
+        public LoginUpdateUser()
         {
             _httpClient = new HttpClient();
             _httpClient.BaseAddress = new Uri(Helper.ApiBaseUrl);
         }
 
-        [Test]
+        [Test, Order(1)]
         public async Task LoginUserTest()
         {
             var loginData = new Login
@@ -79,16 +75,15 @@ public class Test : PageTest
             _token = token;
             Console.WriteLine(token);
         }
-        [Test]
+
+        [Test, Order(2)]
         public async Task UpdateAndReloginUserTest()
         {
-            // Ensure you have previously stored the token in the Helper class using LoginUserTest
             if (string.IsNullOrEmpty(_token))
             {
                 Assert.Fail("Token not available. Run LoginUserTest first.");
             }
 
-            // Create an UpdateUserCommandModel with the new information
             var updateUserModel = new UpdateUser
             {
                 UserEmail = "updatedemail@example.com",
@@ -102,16 +97,16 @@ public class Test : PageTest
 
             var jsonContent = JsonConvert.SerializeObject(updateUserModel);
             var httpContent = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-    
+
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _token);
             var updateResponse = await _httpClient.PutAsync("/api/account/update/user", httpContent);
 
             Assert.AreEqual(HttpStatusCode.OK, updateResponse.StatusCode);
-    
+
             var loginData = new Login
             {
                 email = "updatedemail@example.com",
-                password = "TestPassword123" 
+                password = "TestPassword123"
             };
 
             jsonContent = JsonConvert.SerializeObject(loginData);
@@ -120,11 +115,130 @@ public class Test : PageTest
             var loginResponse = await _httpClient.PostAsync("/api/account/login", httpContent);
 
             Assert.AreEqual(HttpStatusCode.OK, loginResponse.StatusCode);
-            
+
             var jsonResponse = await loginResponse.Content.ReadAsStringAsync();
             var newToken = JObject.Parse(jsonResponse)["token"]?.ToString();
             _token = "Bearer " + newToken;
         }
-
     }
+    [TestFixture,Order(3)]
+        public class LoginUpdatePasswordTests
+        {
+            private readonly HttpClient _httpClient;
+            private string? _token = "";
+
+            public LoginUpdatePasswordTests()
+            {
+                _httpClient = new HttpClient();
+                _httpClient.BaseAddress = new Uri(Helper.ApiBaseUrl);
+            }
+
+            [Test, Order(1)]
+            public async Task LoginUserTest()
+            {
+                var loginData = new Login
+                {
+                    email = "updatedemail@example.com",
+                    password = "TestPassword123"
+                };
+
+                var jsonContent = JsonConvert.SerializeObject(loginData);
+                var httpContent = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+                var response = await _httpClient.PostAsync("/api/account/login", httpContent);
+
+                Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+                var jsonResponse = await response.Content.ReadAsStringAsync();
+                var token = JObject.Parse(jsonResponse)["token"]?.ToString();
+                _token = token;
+            }
+
+            [Test, Order(2)]
+            public async Task ChangePasswordAndReLoginTest()
+            {
+                if (string.IsNullOrEmpty(_token))
+                {
+                    Assert.Fail("Token not available. Run LoginUserTest first.");
+                }
+
+                var changePasswordModel = new ChangePassword
+                {
+                    UserEmail = "updatedemail@example.com",
+                    OldPassword = "TestPassword123", 
+                    NewPassword = "NewPassword123"    
+                };
+
+                var jsonContent = JsonConvert.SerializeObject(changePasswordModel);
+                var httpContent = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _token);
+                var changePasswordResponse = await _httpClient.PutAsync("/api/account/edit/password", httpContent);
+
+                Assert.AreEqual(HttpStatusCode.OK, changePasswordResponse.StatusCode);
+
+                var loginData = new Login
+                {
+                    email = "updatedemail@example.com",
+                    password = "NewPassword123"
+                };
+
+                jsonContent = JsonConvert.SerializeObject(loginData);
+                httpContent = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+                var loginResponse = await _httpClient.PostAsync("/api/account/login", httpContent);
+
+                Assert.AreEqual(HttpStatusCode.OK, loginResponse.StatusCode);
+
+                var jsonResponse = await loginResponse.Content.ReadAsStringAsync();
+                var newToken = JObject.Parse(jsonResponse)["token"]?.ToString();
+                _token = "Bearer " + newToken;
+            }
+
+        }
+        
+        [TestFixture, Order(4)]
+        public class DeleteUserTests
+        {
+            private readonly HttpClient _httpClient;
+            private string? _token = "";
+
+            public DeleteUserTests()
+            {
+                _httpClient = new HttpClient();
+                _httpClient.BaseAddress = new Uri(Helper.ApiBaseUrl);
+            }
+
+            [Test, Order(1)]
+            public async Task LoginUserTest()
+            {
+                var loginData = new Login
+                {
+                    email = "updatedemail@example.com",
+                    password = "NewPassword123"
+                };
+
+                var jsonContent = JsonConvert.SerializeObject(loginData);
+                var httpContent = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+                var response = await _httpClient.PostAsync("/api/account/login", httpContent);
+
+                Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+                var jsonResponse = await response.Content.ReadAsStringAsync();
+                var token = JObject.Parse(jsonResponse)["token"]?.ToString();
+                _token = token;
+            }
+
+            [Test, Order(2)]
+            public async Task DeleteUserTest()
+            {
+                if (string.IsNullOrEmpty(_token))
+                {
+                    Assert.Fail("Token not available. Run LoginUserTest first.");
+                }
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _token);
+                var deleteUserResponse = await _httpClient.DeleteAsync("/api/account/delete");
+                Assert.AreEqual(HttpStatusCode.OK, deleteUserResponse.StatusCode);
+            }
+        }
+       
 }

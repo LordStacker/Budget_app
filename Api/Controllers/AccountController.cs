@@ -24,17 +24,33 @@ public class AccountController : ControllerBase
     [Route("/api/account/login")]
     public IActionResult Login([FromBody] LoginCommandModel model)
     {
-        var user = _accountService.Authenticate(model);
-        if (user == null) return Unauthorized();
-        var token = _jwtService.IssueToken(SessionData.FromUser(user));
-        return Ok(new { token });
+        try
+        {
+            var user = _accountService.Authenticate(model);
+            if (user == null) return Unauthorized();
+            var token = _jwtService.IssueToken(SessionData.FromUser(user));
+            return Ok(new { token });
+        }
+        catch (Exception e)
+        {
+            _logger.LogError($"An error occurred during login: {e}");
+            return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred during login.");
+        }
     }
     [HttpPost]
     [Route("/api/account/register")]
     public IActionResult Register([FromBody] RegisterCommandModel model)
     {
-        var user = _accountService.Register(model);
-        return Created("/api/account/user/" + user.Id, user);
+        try
+        {
+            var user = _accountService.Register(model);
+            return Created("/api/account/user/" + user.Id, user);
+        }
+        catch (Exception e)
+        {
+            _logger.LogError($"An error occurred during registration: {e}");
+            return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred during registration.");
+        }
     }
 
     [HttpGet]
@@ -153,5 +169,42 @@ public class AccountController : ControllerBase
         var updatedUser = _accountService.UpdateProfilePhoto(user.Id, image.image);
         return Ok(updatedUser);
     }
+    
+    [HttpDelete]
+    [Route("api/account/delete")]
+    public IActionResult DeleteUser([FromHeader(Name = "Authorization")] string authorizationHeader)
+    {
+        try
+        {
+            if (!string.IsNullOrEmpty(authorizationHeader) && authorizationHeader.StartsWith("Bearer "))
+            {
+                string token = authorizationHeader.Substring("Bearer ".Length);
+
+                try
+                {
+                    sessionData = _jwtService.ValidateAndDecodeToken(token);
+                }
+                catch (Exception e)
+                {
+                    return Unauthorized(e);
+                }
+            }
+            else
+            {
+                return Unauthorized();
+            }
+
+            var user = _accountService.Get(sessionData);
+            if (user == null) return Unauthorized();
+            _accountService.DeleteUser(user.Id);
+            return Ok("User deleted");
+        }
+        catch (Exception e)
+        {
+            _logger.LogError($"An error occurred during user deletion: {e}");
+            return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred during user deletion.");
+        }
+    }
+    
 
 }

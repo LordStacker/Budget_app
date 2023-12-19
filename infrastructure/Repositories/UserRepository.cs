@@ -155,73 +155,34 @@ WHERE user_id = @id;
             }
         }
     }
-
-/*
-    public User Update(int id, string fullName, string email, string? avatarUrl, bool admin = false)
+    
+    public void DeleteUser(int userId)
     {
         const string sql = $@"
-UPDATE users SET full_name = @fullName, email = @email, avatar_url = @avatarUrl, admin = @admin
-WHERE id = @id
-RETURNING
-    id as {nameof(User.Id)},
-    full_name as {nameof(User.FullName)},
-    email as {nameof(User.Email)},
-    avatar_url as {nameof(User.AvatarUrl)},
-    admin as {nameof(User.IsAdmin)}
-    ;
-";
+        DELETE FROM semester_project.password_hash
+        WHERE user_id = @userId;
+        
+        DELETE FROM semester_project.user_to_bm
+        WHERE user_id = @userId;
+        
+        DELETE FROM semester_project.budget_management
+        WHERE bm_id = @userId;
+        
+        DELETE FROM semester_project.user
+        WHERE user_id = @userId;";
+
         using (var conn = _dataSource.OpenConnection())
         {
-            return conn.QueryFirst<User>(sql, new { id, fullName, email, avatarUrl, admin });
+            try
+            {
+                conn.Execute(sql, new { userId });
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("An error occurred while executing the SQL query for deleting the user and related records");
+                throw;
+            }
         }
     }
 
-
-    public IEnumerable<User> GetByIds(IEnumerable<int> ids)
-    {
-        const string sql = $@"
-SELECT
-    id as {nameof(User.Id)},
-    full_name as {nameof(User.FullName)},
-    email as {nameof(User.Email)},
-    avatar_url as {nameof(User.AvatarUrl)},
-    admin as {nameof(User.IsAdmin)}
-FROM users
-WHERE id IN @ids;
-";
-        using (var conn = _dataSource.OpenConnection())
-        {
-            return conn.Query<User>(sql, new { ids });
-        }
-    }
-
-    public IEnumerable<User> GetAll()
-    {
-        const string sql = $@"
-SELECT
-    id as {nameof(User.Id)},
-    full_name as {nameof(User.FullName)},
-    email as {nameof(User.Email)},
-    avatar_url as {nameof(User.AvatarUrl)},
-    admin as {nameof(User.IsAdmin)}
-FROM users
-";
-        using (var conn = _dataSource.OpenConnection())
-        {
-            return conn.Query<User>(sql);
-        }
-    }
-
-    public int Count()
-    {
-        const string sql = $@"
-SELECT count(*)
-FROM users
-";
-        using (var conn = _dataSource.OpenConnection())
-        {
-            return conn.ExecuteScalar<int>(sql);
-        }
-    }
-    */
 }
