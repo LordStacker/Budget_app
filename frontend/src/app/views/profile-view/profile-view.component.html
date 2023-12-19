@@ -37,7 +37,7 @@
       Birthday: {{ user.birthDate | date:'shortDate' }}
     </ion-col>
   </ion-row>
-  <ion-button id="editPassBtn">Edit Password</ion-button>
+  <ion-button id="editPassBtn" (click)="changePassword()">Edit Password</ion-button>
   <ion-button id="editBtn" (click)="changeInfo()">Edit</ion-button>
 </ion-grid>
 </div>

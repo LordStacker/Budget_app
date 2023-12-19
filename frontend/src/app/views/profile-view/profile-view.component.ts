@@ -3,6 +3,7 @@ import {UserInfo} from "../../model/profile-info.model";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {ModalController} from "@ionic/angular";
 import {EditComponent} from "../../components/edit/edit.component";
+import {EditPasswordComponent} from "../../components/edit-password/edit-password.component";
 import {DataService} from "../../../services/data.service";
 import {TokenService} from "../../../services/token.service";
 
@@ -13,7 +14,6 @@ import {TokenService} from "../../../services/token.service";
 })
 export class ProfileViewComponent implements OnInit{
   user: UserInfo | undefined;
-  backendUrl = 'pending';
 
 
   constructor(
@@ -53,4 +53,14 @@ export class ProfileViewComponent implements OnInit{
     await modal.present();
   }
 
+  async changePassword() {
+    const modal = await this.modalController.create({
+      component: EditPasswordComponent,
+      componentProps: {
+        userData: this.user // Pass the user data to the EditComponent
+      }
+    });
+    await modal.present();
+
+  }
 }
