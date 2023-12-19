@@ -27,7 +27,7 @@ export class EditComponent {
   }
 
   editModel: any = {};
-  backendUrl = 'http://localhost:5000/api/account/update/user';
+  backendUrl = '/api/account/update/user';
 
   editUser() {
     const formData = {
@@ -64,7 +64,7 @@ export class EditComponent {
     const requestOptions = {
       headers: headers
     };
-    this.http.get<any>('http://localhost:5000/api/account/me', requestOptions).subscribe(
+    this.http.get<any>('/api/account/me', requestOptions).subscribe(
       data => {
         this.dataService.isUsername = data.username;
         this.dataService.isUser = data;

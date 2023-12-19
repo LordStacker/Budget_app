@@ -21,7 +21,7 @@ export class EditPasswordComponent {
     newPassword: ''
   };
 
-  backendUrl = 'http://localhost:5000/api/account/edit/password';
+  backendUrl = '/api/account/edit/password';
 
   constructor(
     private navParams: NavParams,

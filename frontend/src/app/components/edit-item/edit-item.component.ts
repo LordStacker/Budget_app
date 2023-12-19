@@ -11,8 +11,8 @@ import {TokenService} from "../../../services/token.service";
 })
 export class EditItemComponent {
   item: any;
-  backendUrlDel: any = 'http://localhost:5000/delete/transactions/'
-  backendUrlPut: any = 'http://localhost:5000/update/transactions'
+  backendUrlDel: any = '/delete/transactions/'
+  backendUrlPut: any = '/update/transactions'
 
 
 
