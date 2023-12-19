@@ -1,37 +1,57 @@
-name: api test with postman with cli
+name: Project api and test
 on:
   push:
-    branch:
-      -development
-    pull_request:
-      branch:
-        - '*'
+    branches:
+      - Development
+  pull_request:
+    branches:
+      - '*'
+
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-dotnet@v3
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v2
         with:
-          dotnet-version: '8'
-      - uses: actions/setup-node@v1
+          dotnet-version: '8'  
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
         with:
-          node-version: '18'
+          node-version: '18' 
+
       - name: Install Angular program dependencies, Angular global CLI + ng build
-        run: cd ./frontend && npm i -g @angular/cli && npm i && ng build -c="development"
+        working-directory: ./frontend
+        run: |
+          npm i -g @angular/cli
+          npm i
+          ng build -c="development"
 
       - name: Build test code and install playwright test browser
-        run: cd ./Test && dotnet build && pwsh bin/Debug/net8.0/playwright.ps1 install --with-deps
+        working-directory: ./Test
+        run: |
+          dotnet build
+          pwsh bin/Debug/net8.0/playwright.ps1 install --with-deps
 
       - name: Build and run Web API + getting process ID for shutting down later
-        run: cd ./api && dotnet run & echo "API_PID=$!" >> $GITHUB_ENV
+        working-directory: ./api
+        run: |
+          dotnet run & echo "API_PID=$!" >> $GITHUB_ENV
         env:
           pgconn: ${{secrets.PGCONN}}
 
       - name: Run tests once API is running (sleep interval set to 180 seconds)
-        run: cd ./Test && sleep 180 && dotnet test
+        working-directory: ./Test
+        run: |
+          sleep 180
+          dotnet test
         env:
           pgconn: ${{secrets.PGCONN}}
-          
+
       - name: Shutdown when done running
         run: kill $API_PID
