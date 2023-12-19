@@ -24,6 +24,14 @@ export class EditComponent {
 
   ) {
     this.userData = this.navParams.get('userData');
+    this.editModel = {
+      userEmail: this.userData.userEmail,
+      username: this.userData.username,
+      firstname: this.userData.firstname,
+      lastname: this.userData.lastname,
+      education: this.userData.education,
+      birthDate: this.userData.birthDate
+    };
   }
 
   editModel: any = {};
