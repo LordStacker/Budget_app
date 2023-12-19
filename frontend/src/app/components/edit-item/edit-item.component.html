@@ -1,16 +1,16 @@
-<ion-content>
-  <ion-item>
+<ion-content class="editItemContent">
+  <ion-item id="nameOfItem" lines="none">
     <ion-label>Name of Purchase:</ion-label>
     <ion-input [(ngModel)]="item.name" type="text"></ion-input>
   </ion-item>
-  <ion-item>
+  <ion-item id="quantityItem" lines="none">
     <ion-label>Quantity:</ion-label>
     <ion-input [(ngModel)]="item.quantity" type="number"></ion-input>
   </ion-item>
-  <ion-item>
+  <ion-item id="costItem" lines="none">
     <ion-label>Cost:</ion-label>
     <ion-input [(ngModel)]="item.price" type="number"></ion-input>
   </ion-item>
-  <ion-button (click)="updateItem()">Update</ion-button>
-  <ion-button (click)="deleteItem()">Delete</ion-button>
+  <ion-button id="updateButton" (click)="updateItem()">Update</ion-button>
+  <ion-button id="deleteButton" (click)="deleteItem()">Delete</ion-button>
 </ion-content>
