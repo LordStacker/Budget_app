@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using infrastructure.DataModels;
+using infrastructure.DataSources;
 using Npgsql;
 
 
@@ -8,9 +9,9 @@ namespace infrastructure.Repositories;
 public class PasswordHashRepository
 {
     
-    private NpgsqlDataSource _dataSource;
+    private IDataSource _dataSource;
 
-    public PasswordHashRepository(NpgsqlDataSource dataSource)
+    public PasswordHashRepository(IDataSource dataSource)
     {
         _dataSource = dataSource;
     }

@@ -1,14 +1,15 @@
 ﻿using Dapper;
 using infrastructure.DataModels;
+using infrastructure.DataSources;
 using Npgsql;
 
 namespace infrastructure.Repositories;
 
 public class BudgetRepository
 {
-    private NpgsqlDataSource _dataSource;
+    private IDataSource _dataSource;
 
-    public BudgetRepository(NpgsqlDataSource dataSource)
+    public BudgetRepository(IDataSource dataSource)
     {
         _dataSource = dataSource;
     }

@@ -8,18 +8,6 @@ using service.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDataSource();
-
-if (builder.Environment.IsDevelopment())
-{
-    builder.Services.AddNpgsqlDataSource(Utilities.ProperlyFormattedConecctionString,
-        dataSourceBuilder => dataSourceBuilder.EnableParameterLogging());
-}
-
-if (builder.Environment.IsProduction())
-{
-    builder.Services.AddNpgsqlDataSource(Utilities.ProperlyFormattedConecctionString);
-}
-
 var frontEndRelativePath = builder.Environment.IsDevelopment() ? "./../frontend/dist" : "../Budget_app_frontend";
 builder.Services.AddSingleton<UserRepository>();
 builder.Services.AddSingleton<PasswordHashRepository>();
