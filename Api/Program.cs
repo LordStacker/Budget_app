@@ -8,6 +8,7 @@ using service.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDataSource();
+
 var frontEndRelativePath = builder.Environment.IsDevelopment() ? "./../frontend/dist" : "../Budget_app_frontend";
 builder.Services.AddSingleton<UserRepository>();
 builder.Services.AddSingleton<PasswordHashRepository>();
@@ -46,5 +47,12 @@ app.UseCors(options =>
 app.UseAuthorization();
 
 app.MapControllers();
+var frontendOrigin = app.Services.GetService<IConfiguration>()!["FrontendOrigin"];
+app.UseCors(policy =>
+    policy
+        .SetIsOriginAllowed(origin => origin == frontendOrigin)
+        .AllowAnyMethod()
+        .AllowAnyHeader()
+);
 
 app.Run();
