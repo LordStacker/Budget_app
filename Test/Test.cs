@@ -31,7 +31,7 @@ namespace Test
                 firstname = "John",
                 lastname = "Doe",
                 education = "Bachelor's Degree",
-                birthDate = new DateTime(1990, 1, 1),
+                birthDate = new DateOnly(1990, 1, 1),
             };
 
             var jsonContent = JsonConvert.SerializeObject(registrationData);
@@ -90,7 +90,7 @@ namespace Test
                 Firstname = "UpdatedFirstName",
                 Lastname = "UpdatedLastName",
                 Education = "UpdatedEducation",
-                BirthDate = new DateTime(1995, 1, 1),
+                BirthDate = new DateOnly(1995, 1, 1),
                 ProfilePhoto = "updatedprofile.jpg"
             };
 

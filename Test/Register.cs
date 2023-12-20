@@ -9,6 +9,6 @@
         public string firstname { get; set; }
         public string lastname { get; set; }
         public string education { get; set; }
-        public DateTime birthDate { get; set; }
+        public DateOnly birthDate { get; set; }
     }
 }
