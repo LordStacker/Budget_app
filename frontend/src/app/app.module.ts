@@ -33,7 +33,7 @@ import {AuthenticatedGuard} from "./guard";
 import { UpdateAmountComponent } from './components/update-amount/update-amount.component';
 import { EditItemComponent } from './components/edit-item/edit-item.component';
 import { EditPasswordComponent } from './components/edit-password/edit-password.component';
-import {RewriteHttpInterceptor} from "../interceptors/rewritte-hhpt-interceptor";
+import {RewriteHttpInterceptor} from "../interceptors/rewritte-http-interceptor";
 
 
 
