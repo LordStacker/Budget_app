@@ -1,0 +1,11 @@
+#nameOfItem, #quantityItem, #costItem {
+
+  --background: lightgrey;
+  border-radius: 10px;
+  margin: 2px;
+}
+
+#updateButton, #deleteButton {
+  --background: lightgrey;
+  font-family: "BankGothic Lt BT", serif;
+}

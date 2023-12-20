@@ -1,0 +1,62 @@
+<ion-content class="editContent">
+  <form (ngSubmit)="editUser()" #editForm="ngForm">
+    <ion-item lines="none" id="nameEdit">
+      <ion-input
+        required="true"
+        type="text"
+        placeholder="Name"
+        name="Name"
+        [(ngModel)]="editModel.firstname"
+      ></ion-input>
+    </ion-item>
+    <ion-item lines="none" id="lastNameEdit">
+      <ion-input
+        required="true"
+        type="text"
+        placeholder="Lastname"
+        name="Lastname"
+        [(ngModel)]="editModel.lastname"
+      ></ion-input>
+    </ion-item>
+    <ion-item lines="none" id="usernameEdit">
+      <ion-input
+        required="true"
+        type="text"
+        placeholder="Username"
+        name="Username"
+        [(ngModel)]="editModel.username"
+      ></ion-input>
+    </ion-item>
+    <ion-item lines="none" id="emailEdit">
+      <ion-input
+        required="true"
+        type="text"
+        placeholder="Email"
+        name="email"
+        [(ngModel)]="editModel.userEmail"
+      ></ion-input>
+    </ion-item>
+    <ion-item lines="none" id="uniEdit">
+      <ion-input
+        required="true"
+        type="text"
+        placeholder="University"
+        name="University"
+        [(ngModel)]="editModel.education"
+      ></ion-input>
+    </ion-item>
+    <ion-item lines="none" id="birthEdit">
+      <ion-input
+        required="true"
+        type="date"
+        placeholder="Birthday"
+        name="Birthday"
+        [(ngModel)]="editModel.birthDate"
+      ></ion-input>
+    </ion-item>
+    <ion-item lines="none" id="buttonItem">
+      <ion-button id="submitBtn" type="submit" [disabled]="editForm.invalid">Submit</ion-button>
+      <ion-button id="cancelBtn" type="button" (click)="closeModal()">Cancel</ion-button>
+    </ion-item>
+  </form>
+</ion-content>

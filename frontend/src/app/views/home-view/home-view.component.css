@@ -1,0 +1,239 @@
+ion-col {
+  border: solid 1px #fff;
+  color: #fff;
+  text-align: center;
+}
+
+#helloUser{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: "BankGothic Lt BT", serif;
+  font-size: 50px;
+  color: black;
+}
+
+.grid-home{
+  display: flex;
+  justify-content: center;
+  /*background-image: url("src/assets/images/background-home-login.jpg");
+  background-repeat: no-repeat; */
+}
+
+#contentOne{
+  display: flex;
+  justify-content: center;
+  border-color: black;
+  border-radius: 20px;
+}
+
+.ion-justify-content-center {
+  display: flex;
+  justify-content: center;
+  width: 1000px;
+  background: #0064b1;
+  border-radius: 20px;
+
+}
+
+div.welcome-box {
+  background-image: url("src/assets/images/Homescreen.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-color: white;
+  padding-top: 25px;
+  height: 1300px;
+
+}
+
+.container-1 {
+  display: flex;
+}
+
+#infoText {
+  font-family: "BankGothic Lt BT", serif;
+  color: white;
+  font-size: 120%;
+}
+
+.oneOfthree {
+  display: flex;
+  justify-content: center;
+  width: 1000px;
+  min-height: 100px;
+  background: white;
+  border-radius: 20px;
+}
+
+#contentTwo {
+  display: flex;
+  border-color: black;
+  border-radius: 20px;
+}
+
+#simple {
+  padding-left: 20px;
+  margin-top: 10px;
+  background-image: url("src/assets/images/simple-budget.jpg");
+  --background: transparent;
+  background-position: center;
+  background-size: cover;
+  border-radius: 40px;
+  height: 90px;
+  width: 90px;
+}
+
+#simpleTitle {
+  color: black;
+  font-family: "BankGothic Lt BT", serif;
+  margin-top: -85px;
+}
+
+#simpleText {
+  color: black;
+  font-family: "BankGothic Lt BT", serif;
+  padding-left: 10%;
+}
+
+.twoOfthree {
+  display: flex;
+  justify-content: center;
+  width: 1000px;
+  min-height: 100px;
+  background: white;
+  border-radius: 20px;
+}
+
+#contentThree {
+  display: flex;
+  border-color: black;
+  border-radius: 20px;
+}
+
+#real-time {
+  padding-left: 20px;
+  margin-top: 10px;
+  background-image: url("src/assets/images/real-time.jpg");
+  --background: transparent;
+  background-position: center;
+  background-size: cover;
+  border-radius: 40px;
+  height: 90px;
+  width: 90px;
+}
+
+#realTitle {
+  color: black;
+  font-family: "BankGothic Lt BT", serif;
+  margin-top: -85px;
+}
+
+#realText {
+  color: black;
+  font-family: "BankGothic Lt BT", serif;
+  padding-left: 10%;
+}
+
+.threeOfthree {
+  display: flex;
+  justify-content: center;
+  width: 1000px;
+  min-height: 100px;
+  background: white;
+  border-radius: 20px;
+}
+
+#contentFour {
+  display: flex;
+  border-color: black;
+  border-radius: 20px;
+}
+
+#innovation {
+  padding-left: 20px;
+  margin-top: 10px;
+  background-image: url("src/assets/images/planning.png");
+  --background: transparent;
+  background-position: center;
+  background-size: cover;
+  border-radius: 40px;
+  height: 90px;
+  width: 90px;
+}
+
+#innoTitle {
+  color: black;
+  font-family: "BankGothic Lt BT", serif;
+  margin-top: -85px;
+}
+
+#innoText {
+  color: black;
+  font-family: "BankGothic Lt BT", serif;
+  padding-left: 10%;
+}
+
+.how-to {
+  display: flex;
+  justify-content: center;
+  width: 1000px;
+  margin-bottom: 10%;
+  min-height: 100px;
+  background: white;
+  border-radius: 20px;
+}
+
+#contentFive {
+  display: flex;
+  border-color: black;
+  border-radius: 20px;
+}
+
+#howToTitleOne {
+  color: black;
+  font-family: "BankGothic Lt BT", serif;
+}
+
+#howToTextOne {
+  color: black;
+  font-family: "BankGothic Lt BT", serif;
+}
+
+#howToTitleTwo {
+  color: black;
+  font-family: "BankGothic Lt BT", serif;
+}
+
+#howToTextTwo {
+  color: black;
+  font-family: "BankGothic Lt BT", serif;
+}
+
+#howToTitleThree {
+  color: black;
+  font-family: "BankGothic Lt BT", serif;
+}
+
+#howToTextThree {
+  color: black;
+  font-family: "BankGothic Lt BT", serif;
+}
+
+#howToTitleFour {
+  color: black;
+  font-family: "BankGothic Lt BT", serif;
+}
+
+#howToTextFour {
+  color: black;
+  font-family: "BankGothic Lt BT", serif;
+}
+
+#howToTitleFive {
+  color: black;
+  font-family: "BankGothic Lt BT", serif;
+}
+
+

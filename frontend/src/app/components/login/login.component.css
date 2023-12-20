@@ -1,0 +1,30 @@
+.login-view{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.register{
+  margin-left: 15px;
+  font-family: "BankGothic Lt BT", serif;
+  --background: lightgrey;
+  border-radius: 10px;
+  font-size: 120%;
+}
+
+.loginHome{
+  --background: lightgrey;
+  border-radius: 10px;
+  font-size: 120%;
+  font-family: "BankGothic Lt BT", serif;
+}
+
+.inputEmail, .inputPassword {
+  --background: lightgrey;
+  max-width: 50%;
+  margin: 5px;
+  border-radius: 20px;
+}
+
+

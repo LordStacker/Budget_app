@@ -1,0 +1,95 @@
+<div class="login-box">
+  <form (ngSubmit)="register()"  #registrationForm="ngForm" class="regForm">
+    <ion-item id="regEmail" lines="none">
+      <ion-input
+        required="true"
+        class="e-mail"
+        type="text"
+        placeholder="E-mail address"
+        name="userEmail"
+        [(ngModel)]="registerModel.userEmail"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item id="regPassword" lines="none">
+      <ion-input
+        required="true"
+        class="password"
+        type="password"
+        placeholder="Password"
+        name="password"
+        [(ngModel)]="registerModel.password"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item id="regRePassword" lines="none">
+      <ion-input
+        required="true"
+        class="reenter-password"
+        type="password"
+        placeholder="Re-enter password"
+        name="password"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item id="regUsername" lines="none">
+      <ion-input
+        required="true"
+        class="username"
+        type="text"
+        placeholder="Username"
+        name="username"
+        [(ngModel)]="registerModel.username"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item id="regFirstName" lines="none">
+      <ion-input
+        required="true"
+        class="first-name"
+        type="text"
+        placeholder="First name"
+        name="firstname"
+        [(ngModel)]="registerModel.firstname"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item id="regLastName" lines="none">
+      <ion-input
+        required="true"
+        class="last-name"
+        type="text"
+        placeholder="Last name"
+        name="lastname"
+        [(ngModel)]="registerModel.lastname"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item id="regUni" lines="none">
+      <ion-input
+        required="true"
+        class="education"
+        type="text"
+        placeholder="Education"
+        name="education"
+        [(ngModel)]="registerModel.education"
+      ></ion-input>
+    </ion-item>
+    <ion-item id="regBirth" lines="none">
+          <ion-input
+            required="true"
+            placeholder="Birthday"
+            name="Birthday"
+            type="date"
+            [(ngModel)]="registerModel.birthDate"
+          ></ion-input>
+    </ion-item>
+
+    <ion-item class="regBtn" lines="none">
+      <ion-button id="submitUser" type="submit" [disabled]="registrationForm.invalid">Submit</ion-button>
+      <ion-button (click)="onCancelClick()" id="cancelSubmit" type="button">
+        Cancel
+      </ion-button>
+    </ion-item>
+  </form>
+</div>
