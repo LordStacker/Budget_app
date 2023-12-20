@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseUrl: "pending"
+  baseUrl: "https://budgetapp.azurewebsites.net/"
 };
