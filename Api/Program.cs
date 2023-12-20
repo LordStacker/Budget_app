@@ -9,14 +9,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDataSource();
 
-var frontEndRelativePath = builder.Environment.IsDevelopment() ? "./../frontend/www" : "../Budget_app_frontend";
+var frontEndRelativePath = builder.Environment.IsDevelopment() ? "./../frontend/dist" : "../Budget_app_frontend";
 builder.Services.AddSingleton<UserRepository>();
 builder.Services.AddSingleton<PasswordHashRepository>();
 builder.Services.AddSingleton<AccountService>();
 builder.Services.AddSingleton<BudgetRepository>();
 builder.Services.AddSingleton<BudgetService>();
 builder.Services.AddJwtService();
-
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
