@@ -6,7 +6,6 @@ using service.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 if (builder.Environment.IsDevelopment())
 {
     builder.Services.AddNpgsqlDataSource(Utilities.ProperlyFormattedConecctionString,
@@ -25,13 +24,11 @@ builder.Services.AddSingleton<BudgetService>();
 builder.Services.AddJwtService();
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

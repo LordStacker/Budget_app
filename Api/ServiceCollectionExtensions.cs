@@ -17,8 +17,6 @@ public static class ServiceCollectionExtensions
             var configuration = services.GetRequiredService<IConfiguration>();
             var options = configuration.GetRequiredSection("JWT").Get<JwtOptions>()!;
 
-            // If address isn't set in the config then we are likely running in development mode.
-            // We will use the address of the server as *issuer* for JWT.
             if (string.IsNullOrEmpty(options?.Address))
             {
                 var server = services.GetRequiredService<IServer>();
