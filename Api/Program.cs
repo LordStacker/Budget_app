@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDataSource();
 
-var frontEndRelativePath = builder.Environment.IsDevelopment() ? "./../frontend/dist" : "../Budget_app_frontend";
+var frontEndRelativePath = builder.Environment.IsDevelopment() ? "./../frontend/www" : "../Budget_app_frontend";
 builder.Services.AddSingleton<UserRepository>();
 builder.Services.AddSingleton<PasswordHashRepository>();
 builder.Services.AddSingleton<AccountService>();
@@ -27,7 +27,6 @@ builder.Services.Configure<ForwardedHeadersOptions>(options =>
         ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
 });
 var app = builder.Build();
-
 app.UseForwardedHeaders();
 
 if (app.Environment.IsDevelopment())
