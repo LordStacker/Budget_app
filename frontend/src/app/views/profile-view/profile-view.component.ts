@@ -47,7 +47,7 @@ export class ProfileViewComponent implements OnInit{
     const modal = await this.modalController.create({
       component: EditComponent,
       componentProps: {
-        userData: this.user // Pass the user data to the EditComponent
+        userData: this.user 
       }
     });
     await modal.present();
@@ -57,7 +57,7 @@ export class ProfileViewComponent implements OnInit{
     const modal = await this.modalController.create({
       component: EditPasswordComponent,
       componentProps: {
-        userData: this.user // Pass the user data to the EditComponent
+        userData: this.user 
       }
     });
     await modal.present();

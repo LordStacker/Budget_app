@@ -34,7 +34,6 @@ export class ResetPasswordComponent {
   }
 
   onCancelClick() {
-    // Navigate to the "home" route when the "Cancel" button is clicked
     this.router.navigate(['/login']);
   }
 }

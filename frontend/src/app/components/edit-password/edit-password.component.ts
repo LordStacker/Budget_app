@@ -43,8 +43,6 @@ export class EditPasswordComponent {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.tokenService.getToken()}`
     });
-
-    // Set up request options
     const requestOptions = {
       headers: headers
     };
